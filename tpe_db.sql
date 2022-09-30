@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-09-2022 a las 00:42:20
+-- Tiempo de generación: 30-09-2022 a las 03:05:43
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -30,19 +30,23 @@ SET time_zone = "+00:00";
 CREATE TABLE `ejercicios` (
   `id` int(11) NOT NULL,
   `nombre_ej` varchar(100) NOT NULL,
-  `musculo_ej` varchar(100) NOT NULL,
+  `musculo_id` int(11) NOT NULL,
   `intensidad_ej` int(11) NOT NULL,
   `seccion_ej` varchar(100) NOT NULL,
   `descripcion_ej` varchar(750) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
 --
--- Volcado de datos para la tabla `ejercicios`
+-- Estructura de tabla para la tabla `musculos`
 --
 
-INSERT INTO `ejercicios` (`id`, `nombre_ej`, `musculo_ej`, `intensidad_ej`, `seccion_ej`, `descripcion_ej`) VALUES
-(1, 'Press-Banca', 'Pectoral', 1, 'Barra', 'hola'),
-(2, 'Press-Banca', 'Pectoral', 1, 'Barra', 'hola');
+CREATE TABLE `musculos` (
+  `id` int(11) NOT NULL,
+  `nombre_musculo` varchar(100) NOT NULL,
+  `caracteristicas` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Índices para tablas volcadas
@@ -52,6 +56,13 @@ INSERT INTO `ejercicios` (`id`, `nombre_ej`, `musculo_ej`, `intensidad_ej`, `sec
 -- Indices de la tabla `ejercicios`
 --
 ALTER TABLE `ejercicios`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `musculo_id` (`musculo_id`);
+
+--
+-- Indices de la tabla `musculos`
+--
+ALTER TABLE `musculos`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -62,7 +73,13 @@ ALTER TABLE `ejercicios`
 -- AUTO_INCREMENT de la tabla `ejercicios`
 --
 ALTER TABLE `ejercicios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `musculos`
+--
+ALTER TABLE `musculos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
