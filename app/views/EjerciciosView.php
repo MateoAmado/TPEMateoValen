@@ -11,4 +11,12 @@ class EjerciciosView {
 
     }
 
+    function MostrarEjercicio($ejercicio){
+
+        require_once './templates/header.php'; 
+        echo "<p> </p>";
+        var_dump($ejercicio);
+        require_once './templates/footer.php';
+    }
+
 }

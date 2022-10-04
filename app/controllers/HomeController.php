@@ -11,7 +11,7 @@ class HomeController {
         $this->view = new HomeView();
     }
 
-    function MostrarHome(){
+    function Mostrar(){
         $this->view->MostrarHome();
     }
 }

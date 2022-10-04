@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-10-2022 a las 02:18:34
+-- Tiempo de generación: 04-10-2022 a las 19:33:25
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -60,8 +60,15 @@ INSERT INTO `ejercicios` (`id`, `nombre_ej`, `musculo_id`, `intensidad_ej`, `sec
 CREATE TABLE `musculos` (
   `id` int(11) NOT NULL,
   `nombre_musculo` varchar(100) NOT NULL,
-  `caracteristicas` varchar(500) NOT NULL
+  `division_musculo` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `musculos`
+--
+
+INSERT INTO `musculos` (`id`, `nombre_musculo`, `division_musculo`) VALUES
+(1, 'Pecho', 'Pectoral mayor, Pectoral menor');
 
 --
 -- Índices para tablas volcadas
@@ -94,7 +101,17 @@ ALTER TABLE `ejercicios`
 -- AUTO_INCREMENT de la tabla `musculos`
 --
 ALTER TABLE `musculos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `musculos`
+--
+ALTER TABLE `musculos`
+  ADD CONSTRAINT `musculos_ibfk_1` FOREIGN KEY (`id`) REFERENCES `ejercicios` (`musculo_id`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

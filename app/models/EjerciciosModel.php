@@ -8,13 +8,23 @@ class EjerciciosModel {
         $this->db = new PDO('mysql:host=localhost;'.'dbname=tpe_db;charset=utf8', 'root', '');
     }
 
-    function obtenerEjercicios(){
-        $query = $this->db->prepare("SELECT * FROM ejercicios");
-        $query->execute();
+    public function obtenerEjercicios(){
+        $sentencia = $this->db->prepare("SELECT * FROM ejercicios");
+        $sentencia->execute();
 
-        $ejercicios = $query->fetchAll(PDO::FETCH_OBJ);
+        $ejercicios = $sentencia->fetchAll(PDO::FETCH_OBJ);
         
         return $ejercicios;
     }
+    public function obtenerEjercicio($id){
+        $sentencia = $this->db->prepare("SELECT * FROM `ejercicios` WHERE id=$id");
+        $sentencia->execute();
+
+        $ejercicio = $sentencia->fetch(PDO::FETCH_OBJ);
+        
+        return $ejercicio;
+    }
+
+
 
 }
