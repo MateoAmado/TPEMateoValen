@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-10-2022 a las 19:33:25
+-- Tiempo de generación: 06-10-2022 a las 01:11:36
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `ejercicios` (
-  `id` int(11) NOT NULL,
+  `id_ejer` int(11) NOT NULL,
   `nombre_ej` varchar(100) NOT NULL,
   `musculo_id` int(11) NOT NULL,
   `intensidad_ej` int(11) NOT NULL,
@@ -40,7 +40,7 @@ CREATE TABLE `ejercicios` (
 -- Volcado de datos para la tabla `ejercicios`
 --
 
-INSERT INTO `ejercicios` (`id`, `nombre_ej`, `musculo_id`, `intensidad_ej`, `seccion_ej`, `descripcion_ej`) VALUES
+INSERT INTO `ejercicios` (`id_ejer`, `nombre_ej`, `musculo_id`, `intensidad_ej`, `seccion_ej`, `descripcion_ej`) VALUES
 (1, 'Press inclinado con mancuernas', 1, 2, 'Con mancuernas', 'Sí que es cierto que en este caso también se incide un poco más sobre el deltoides anterior, y por ello es conveniente que tratemos de retraer bien las escápulas llevando los hombros hacia atrás y hacia abajo.\r\nEste gesto es muy simple de llevar a cabo y deberíamos automatizarlo cuanto antes, ya que reducirá mucho el riesgo de que nos hagamos daño en estos ejercicios de empuje.'),
 (2, 'Press declinado con mancuernas', 1, 2, 'Con mancuernas', 'Permite conseguir un gran rango de recorrido dado que se ejecuta con mancuernas y de manera declinada. Intenta que tus codos en diagonal, de modo que tus brazos formen un ángulo de 45 grados con respecto a tu torso, para reducir las probabilidades de lesionarte.'),
 (3, 'Press de banca ', 1, 2, 'Con barra', 'Para iniciar la realización del ejercicio es necesario acostarse en un banco plano con los glúteos, caderas y hombros sobre el banco. Los pies deben apoyarse en suelo, separados un poco más allá del ancho de lo hombros. Con las manos debemos tomar la barra de manera que las palmas miren hacia adelante, es decir, en pronación, y separadas ligeramente más allá de la anchura de los hombros.\r\nEl brazo y el antebrazo deben formar un ángulo de 90º, por lo que debemos flexionar el codo de manera que la barra tomada con las manos quede exactamente encima del pecho.\r\nDesde allí debemos inspirar y descender lentamente la barra hacia el pecho, sin despegar la espalda del banco. Una vez la barra esté sobre el pecho debemos empujar hacia arriba mientras'),
@@ -78,7 +78,7 @@ INSERT INTO `musculos` (`id`, `nombre_musculo`, `division_musculo`) VALUES
 -- Indices de la tabla `ejercicios`
 --
 ALTER TABLE `ejercicios`
-  ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`id_ejer`),
   ADD KEY `musculo_id` (`musculo_id`);
 
 --
@@ -95,7 +95,7 @@ ALTER TABLE `musculos`
 -- AUTO_INCREMENT de la tabla `ejercicios`
 --
 ALTER TABLE `ejercicios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_ejer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `musculos`
