@@ -1,5 +1,6 @@
 <?php
 require_once './app/views/HomeView.php';
+require_once './app/models/HomeModel.php';
 
 
 class HomeController {
@@ -7,11 +8,13 @@ class HomeController {
     private $view;
 
     public function __construct() {
-        // $this->model = new HomeModel();
+        $this->model = new HomeModel();
         $this->view = new HomeView();
+
     }
 
     function Mostrar(){
-        $this->view->MostrarHome();
+        $ejercicios = $this->model->obtenerejerciciosrandom();
+        $this->view->MostrarHome($ejercicios);
     }
 }
