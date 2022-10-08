@@ -9,16 +9,7 @@ class EjerciciosModel {
     }
 
     public function obtenerEjercicios(){
-        $sentencia = $this->db->prepare("SELECT * FROM ejercicios");
-        $sentencia->execute();
-
-        $ejercicios = $sentencia->fetchAll(PDO::FETCH_OBJ);
-        
-        return $ejercicios;
-    }
-
-    public function obtenerEjerciciosCateg(){
-        $sentencia = $this->db->prepare("SELECT * FROM ejercicios AS ejer, musculos AS mu WHERE ejer.musculo_id = mu.id;");
+        $sentencia = $this->db->prepare("SELECT ejercicios.*, musculos.nombre_musculo FROM ejercicios JOIN musculos ON ejercicios.musculo_id = musculos.id;");
         $sentencia->execute();
 
         $ejercicios = $sentencia->fetchAll(PDO::FETCH_OBJ);
@@ -27,7 +18,7 @@ class EjerciciosModel {
     }
     
     public function obtenerEjercicio($id){
-        $sentencia = $this->db->prepare("SELECT * FROM `ejercicios` WHERE id=?");
+        $sentencia = $this->db->prepare("SELECT ejercicios.*, musculos.nombre_musculo FROM ejercicios JOIN musculos ON ejercicios.musculo_id = musculos.id WHERE id_ejer=?");
         $sentencia->execute([$id]);
 
         $ejercicio = $sentencia->fetch(PDO::FETCH_OBJ);

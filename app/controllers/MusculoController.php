@@ -11,9 +11,14 @@ class MusculoController{
        $this->view = new MusculoView();
     }
 
-   public function MostrarMusculo(){
+   public function Mostrar_Musculos(){
       $musculos = $this->model->obtenerMusculos();
       $this->view->MostrarMusculos($musculos);
+    }
+
+    public function Mostrar_Musculo($id){
+      $musculo = $this->model->obtenerMusculo($id);
+      $this->view->MostrarMusculo($musculo);
 
     }
 }

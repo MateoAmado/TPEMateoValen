@@ -17,7 +17,7 @@ class EjerciciosController {
         $this->view->MostrarEjercicios($ejercicios);
     }
 
-    public function MostrarEjercicio($id){
+    public function Mostrar_Ejercicio($id){
        $ejercicio = $this->model->obtenerEjercicio($id);
        $this->view->MostrarEjercicio($ejercicio);
     }

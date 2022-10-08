@@ -1,4 +1,27 @@
-<!DOCTYPE html>
+<?php
+/* Smarty version 4.2.1, created on 2022-10-08 21:23:59
+  from 'D:\programas\XAMP\htdocs\projects\TPEMateoValen\templates\header.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.2.1',
+  'unifunc' => 'content_6341ce4f63daf2_66868630',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '3ce527c8abd0d9d0679e7c446c844de9ee180f56' => 
+    array (
+      0 => 'D:\\programas\\XAMP\\htdocs\\projects\\TPEMateoValen\\templates\\header.tpl',
+      1 => 1665257037,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_6341ce4f63daf2_66868630 (Smarty_Internal_Template $_smarty_tpl) {
+?><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -30,4 +53,5 @@
       
     
 </body>
-</html>
+</html><?php }
+}

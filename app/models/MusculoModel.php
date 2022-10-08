@@ -15,4 +15,11 @@ class MusculoModel{
         return $musculos;
     }
 
+    public function obtenerMusculo($id){
+        $sentencia = $this->db->prepare("SELECT * FROM `musculos` WHERE id=?");
+        $sentencia->execute([$id]);
+
+        $musculo = $sentencia->fetch(PDO::FETCH_OBJ);
+        return $musculo;
+    }
 }

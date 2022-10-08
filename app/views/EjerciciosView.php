@@ -1,22 +1,22 @@
 <?php
+require_once 'libs\smarty\libs\Smarty.class.php';
 
 class EjerciciosView {
+    private $smarty;
 
-    function MostrarEjercicios($ejercicios){
-
-        require_once './templates/header.tpl'; 
-        echo "<p> </p>";
-        var_dump($ejercicios);
-        require_once './templates/footer.tpl';
-
+    public function __construct() {
+        $this->smarty = new Smarty();
     }
 
-    function MostrarEjercicio($ejercicio){
+    function MostrarEjercicios($ejercicios){
+        $this->smarty->assign('count', count($ejercicios)); 
+        $this->smarty->assign('ejercicios', $ejercicios);
+        $this->smarty->display('tablaejercicios.tpl');
+    }
 
-        require_once './templates/header.tpl'; 
-        echo "<p> </p>";
-        var_dump($ejercicio);
-        require_once './templates/footer.tpl';
+      function MostrarEjercicio($ejercicio){
+        $this->smarty->assign('ejercicio', $ejercicio);
+        $this->smarty->display('ejercicio.tpl');
     }
 
 }

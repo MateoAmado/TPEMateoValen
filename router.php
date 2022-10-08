@@ -5,7 +5,7 @@ require_once './app/controllers/MusculoController.php';
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
-$action = 'Home'; 
+$action = 'home'; 
 if (!empty($_GET['action'])) { 
     $action = $_GET['action'];
 }
@@ -17,19 +17,24 @@ $EjerciciosController = new EjerciciosController();
 $MusculosController = new MusculoController();
 
 switch ($params[0]){
-    case 'Home':
+    case 'home':
         $HomeController->Mostrar();
         break;
-    case 'Ejercicios':
+    case 'ejercicios':
         if(empty($params[1]) || $params[1]<0){
         $EjerciciosController->MostrarEjercicios();
         }
         else{
-            $EjerciciosController->MostrarEjercicio($params[1]);
+            $EjerciciosController->Mostrar_Ejercicio($params[1]);
         }
         break;
-    case 'Musculos':
-         $MusculosController->MostrarMusculo();
+    case 'musculos':
+        if(empty($params[1])){
+            $MusculosController->Mostrar_Musculos();
+        }
+        else{
+            $MusculosController->Mostrar_Musculo($params[1]);
+        }
         break;
     default:
     echo "PAGINA NO ENCONTRADA ERROR 404";

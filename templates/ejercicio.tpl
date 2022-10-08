@@ -1,11 +1,10 @@
-{include 'header.tpl'}
+{include 'header.tpl'};
     <div class="flex">
-    {foreach $ejercicios as $ejercicio}
-        <div class="card">
+    <div class="card">
           <h2>{$ejercicio->nombre_ej}</h2>
           <div class="popo">
           <h3>{$ejercicio->nombre_musculo}</h3>
-          <h3>Intensidad:
+          <h3>Intesidad:
           {if ($ejercicio->intensidad_ej==1)}
              Baja
          {elseif ($ejercicio->intensidad_ej==2)}
@@ -14,13 +13,12 @@
             Alta
          {/if}</h3>
           <h3>{$ejercicio->seccion_ej}</h3>
-          </div>
-          <a href="ejercicios/{$ejercicio->id_ejer}">Leer mas</a>
-          <div class="botones">
-          <a href="ejercicios/{$ejercicio->id_ejer}/editar">Editar</a>
+          <p>{$ejercicio->descripcion_ej}</p>
+            </div>
+            <div class="botones">
+            <button>Editar</button>
             <button>Eliminar</button>
             </div>
         </div>
-      {/foreach}
-      </div>
+    </div>
 {include 'footer.tpl'};
