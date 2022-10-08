@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-10-2022 a las 01:11:36
+-- Tiempo de generación: 08-10-2022 a las 19:17:51
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -68,7 +68,12 @@ CREATE TABLE `musculos` (
 --
 
 INSERT INTO `musculos` (`id`, `nombre_musculo`, `division_musculo`) VALUES
-(1, 'Pecho', 'Pectoral mayor, Pectoral menor');
+(1, 'Pecho', 'Pectoral mayor, Pectoral menor.'),
+(2, 'Espalda', 'Trapecio, Dorsal ancho, Romboides mayor, Romboides menor, Elevador de la escápula, Serrato posterior superior y Serrato posterior inferior.'),
+(3, 'Piernas', 'Psoas ilíaco, Cuadrado femoral, Géminos superior e inferior, Glúteos, Obturador externo y interno, Pififorme, Cuádriceps, Sartorio, Tensor de la fascia lata, Aductores, Pectíneo, Grácil, Bíceps femoral, Semitendinoso, Semimembranoso, Tibial anterior, Músculo extensor largo de los dedos, Músculo extensor largo del dedo gordo, Músculo peroneo anterior, Peroneo lateral largo y corto, Poplíteo, Músculo flexor común de los dedos de los pies, Músculo tibial posterior.'),
+(4, 'Biceps', 'Porción corta o interna y Porción larga o externa.'),
+(5, 'Triceps', 'Cabeza larga, Cabeza lateral y Cabeza medial.'),
+(6, 'Hombros', 'Pectoral mayor, Pectoral menor, Subclavio, Serrato anterior, Músculos extrínsecos, Músculos intrínsecos.');
 
 --
 -- Índices para tablas volcadas
@@ -101,17 +106,17 @@ ALTER TABLE `ejercicios`
 -- AUTO_INCREMENT de la tabla `musculos`
 --
 ALTER TABLE `musculos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restricciones para tablas volcadas
 --
 
 --
--- Filtros para la tabla `musculos`
+-- Filtros para la tabla `ejercicios`
 --
-ALTER TABLE `musculos`
-  ADD CONSTRAINT `musculos_ibfk_1` FOREIGN KEY (`id`) REFERENCES `ejercicios` (`musculo_id`) ON UPDATE CASCADE;
+ALTER TABLE `ejercicios`
+  ADD CONSTRAINT `ejercicios_ibfk_1` FOREIGN KEY (`musculo_id`) REFERENCES `musculos` (`id`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
