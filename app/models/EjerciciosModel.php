@@ -26,6 +26,14 @@ class EjerciciosModel {
         return $ejercicio;
     }
 
+    public function ModificarEjercicio($id, $nombre_ej, $musculo, $intensidad, $seccion, $descripcion){
+        
+        
+         $sentencia = $this->db->prepare("UPDATE `ejercicios` SET `nombre_ej`='$nombre_ej',`musculo_id`='$musculo',`intensidad_ej`='$intensidad',`seccion_ej`='$seccion',`descripcion_ej`='$descripcion' WHERE id_ejer=?");
+         $sentencia->execute([$id]);
+
+    }
+
 
 
 }

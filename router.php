@@ -24,6 +24,9 @@ switch ($params[0]){
         if(empty($params[1]) || $params[1]<0){
         $EjerciciosController->MostrarEjercicios();
         }
+        else if($params[2]=='editar'){
+            $EjerciciosController->Editar_Ejercicio($params[1]);
+        }
         else{
             $EjerciciosController->Mostrar_Ejercicio($params[1]);
         }
@@ -35,6 +38,11 @@ switch ($params[0]){
         else{
             $MusculosController->Mostrar_Musculo($params[1]);
         }
+        break;
+        case 'confirmar':
+            if(!empty($params[1])){
+           $EjerciciosController->ConfirmarEdicion($params[1]);
+            }
         break;
     default:
     echo "PAGINA NO ENCONTRADA ERROR 404";

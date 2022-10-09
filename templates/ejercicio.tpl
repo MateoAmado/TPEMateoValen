@@ -13,8 +13,8 @@
             Alta
          {/if}</h3>
           <h3>{$ejercicio->seccion_ej}</h3>
-          <p>{$ejercicio->descripcion_ej}</p>
             </div>
+            <p>{$ejercicio->descripcion_ej}</p>
             <div class="botones">
             <button>Editar</button>
             <button>Eliminar</button>

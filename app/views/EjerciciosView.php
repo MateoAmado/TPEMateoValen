@@ -18,5 +18,10 @@ class EjerciciosView {
         $this->smarty->assign('ejercicio', $ejercicio);
         $this->smarty->display('ejercicio.tpl');
     }
+    
+     function EditarEjercicio($ejercicio){
+        $this->smarty->assign('ejercicio', $ejercicio);
+        $this->smarty->display('editarejer.tpl');
+     }
 
 }

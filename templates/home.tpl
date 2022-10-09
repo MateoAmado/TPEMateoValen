@@ -1,6 +1,5 @@
 
 {include 'header.tpl'}
-<base href="'.BASE_URL.'">
     <div class="flex">
     {foreach $ejercicios as $ejercicio}
         <div class="card">
