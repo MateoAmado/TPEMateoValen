@@ -24,11 +24,36 @@ switch ($params[0]){
         if(empty($params[1]) || $params[1]<0){
         $EjerciciosController->MostrarEjercicios();
         }
-        else if($params[2]=='editar'){
-            $EjerciciosController->Editar_Ejercicio($params[1]);
+        else if(!empty($params[2])){
+            if ($params[2] == "editar"){
+                if (!empty($params[3]) && $params[3]=="confirmar"){
+                    $EjerciciosController->ConfirmarEdicion($params[1]);
+                }
+                else{
+                    $EjerciciosController->Editar_Ejercicio($params[1]);
+                }
+            }
+            else if ($params[2] == "eliminar"){
+                if (!empty($params[3]) && $params[3]=="confirmar"){
+                    $EjerciciosController->ConfirmarEliminar($params[1]);
+                 }
+                else{
+                $EjerciciosController->Eliminar_Ejercicio($params[1]);
+                }
+            }
+            else {
+              if($params[2] == "confirmar"){
+                 $EjerciciosController->ConfirmarAgregar();
+                }
+            }
         }
         else{
+            if (($params[1])== "agregar"){
+            $EjerciciosController->Obtener_Ejercicio_Nuevo();
+            }
+             else{
             $EjerciciosController->Mostrar_Ejercicio($params[1]);
+            } 
         }
         break;
     case 'musculos':
@@ -39,10 +64,10 @@ switch ($params[0]){
             $MusculosController->Mostrar_Musculo($params[1]);
         }
         break;
-        case 'confirmar':
+/*         case 'confirmar':
             if(!empty($params[1])){
            $EjerciciosController->ConfirmarEdicion($params[1]);
-            }
+            } */
         break;
     default:
     echo "PAGINA NO ENCONTRADA ERROR 404";

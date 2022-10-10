@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.1, created on 2022-10-08 21:51:49
+/* Smarty version 4.2.1, created on 2022-10-10 23:00:22
   from 'D:\programas\XAMP\htdocs\projects\TPEMateoValen\templates\tablamusculos.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_6341d4d5288cc6_16883173',
+  'unifunc' => 'content_634487e6c70705_22275917',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'bff7b799c8cbd3c6f15cb1704fa53b8efca72ea9' => 
     array (
       0 => 'D:\\programas\\XAMP\\htdocs\\projects\\TPEMateoValen\\templates\\tablamusculos.tpl',
-      1 => 1665258704,
+      1 => 1665432205,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_6341d4d5288cc6_16883173 (Smarty_Internal_Template $_smarty_tpl) {
+function content_634487e6c70705_22275917 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender('file:header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
     <div class="flex">

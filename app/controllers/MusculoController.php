@@ -19,6 +19,5 @@ class MusculoController{
     public function Mostrar_Musculo($id){
       $musculo = $this->model->obtenerMusculo($id);
       $this->view->MostrarMusculo($musculo);
-
     }
 }

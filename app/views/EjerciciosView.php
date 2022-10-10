@@ -23,5 +23,12 @@ class EjerciciosView {
         $this->smarty->assign('ejercicio', $ejercicio);
         $this->smarty->display('editarejer.tpl');
      }
+     function EliminarEjercicioView($ejercicio){
+        $this->smarty->assign('ejercicio', $ejercicio);
+        $this->smarty->display('EliminarEjer.tpl');
+     }
+    function EjercicioNuevoForm(){
+        $this->smarty->display('agregarForm.tpl');
+     }
 
 }

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.1, created on 2022-10-08 22:44:36
+/* Smarty version 4.2.1, created on 2022-10-10 22:52:39
   from 'D:\programas\XAMP\htdocs\projects\TPEMateoValen\templates\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_6341e1341277d0_52370529',
+  'unifunc' => 'content_6344861703c289_43444539',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'bc449152b240e4634c08359823744aa49883110f' => 
     array (
       0 => 'D:\\programas\\XAMP\\htdocs\\projects\\TPEMateoValen\\templates\\home.tpl',
-      1 => 1665261865,
+      1 => 1665432205,
       2 => 'file',
     ),
   ),
@@ -22,10 +22,9 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_6341e1341277d0_52370529 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6344861703c289_43444539 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender('file:header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
-<base href="'.BASE_URL.'">
     <div class="flex">
     <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['ejercicios']->value, 'ejercicio');

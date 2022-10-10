@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.1, created on 2022-10-08 21:59:39
+/* Smarty version 4.2.1, created on 2022-10-10 23:03:46
   from 'D:\programas\XAMP\htdocs\projects\TPEMateoValen\templates\tablaejercicios.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_6341d6aba92036_25244876',
+  'unifunc' => 'content_634488b2985fc3_34844461',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'fa826b7ee1ed9198e4ebf69e00b813c986be4a9d' => 
     array (
       0 => 'D:\\programas\\XAMP\\htdocs\\projects\\TPEMateoValen\\templates\\tablaejercicios.tpl',
-      1 => 1665258839,
+      1 => 1665435824,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_6341d6aba92036_25244876 (Smarty_Internal_Template $_smarty_tpl) {
+function content_634488b2985fc3_34844461 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender('file:header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
     <div class="flex">
@@ -52,9 +52,10 @@ $_smarty_tpl->tpl_vars['ejercicio']->do_else = false;
           <a href="ejercicios/<?php echo $_smarty_tpl->tpl_vars['ejercicio']->value->id_ejer;?>
 ">Leer mas</a>
           <div class="botones">
-          <a href="ejercicios/<?php echo $_smarty_tpl->tpl_vars['ejercicio']->value->id_ejer;?>
+         <a href="ejercicios/<?php echo $_smarty_tpl->tpl_vars['ejercicio']->value->id_ejer;?>
 /editar">Editar</a>
-            <button>Eliminar</button>
+         <a href="ejercicios/<?php echo $_smarty_tpl->tpl_vars['ejercicio']->value->id_ejer;?>
+/eliminar">Eliminar</a>
             </div>
         </div>
       <?php

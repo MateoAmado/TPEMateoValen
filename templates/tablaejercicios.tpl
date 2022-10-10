@@ -17,8 +17,8 @@
           </div>
           <a href="ejercicios/{$ejercicio->id_ejer}">Leer mas</a>
           <div class="botones">
-          <a href="ejercicios/{$ejercicio->id_ejer}/editar">Editar</a>
-            <button>Eliminar</button>
+         <a href="ejercicios/{$ejercicio->id_ejer}/editar">Editar</a>
+         <a href="ejercicios/{$ejercicio->id_ejer}/eliminar">Eliminar</a>
             </div>
         </div>
       {/foreach}

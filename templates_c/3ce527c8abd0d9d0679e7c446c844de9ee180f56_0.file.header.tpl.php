@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.1, created on 2022-10-08 21:23:59
+/* Smarty version 4.2.1, created on 2022-10-10 22:47:29
   from 'D:\programas\XAMP\htdocs\projects\TPEMateoValen\templates\header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_6341ce4f63daf2_66868630',
+  'unifunc' => 'content_634484e1e196c2_90433723',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '3ce527c8abd0d9d0679e7c446c844de9ee180f56' => 
     array (
       0 => 'D:\\programas\\XAMP\\htdocs\\projects\\TPEMateoValen\\templates\\header.tpl',
-      1 => 1665257037,
+      1 => 1665432205,
       2 => 'file',
     ),
   ),
@@ -20,11 +20,13 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6341ce4f63daf2_66868630 (Smarty_Internal_Template $_smarty_tpl) {
+function content_634484e1e196c2_90433723 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <base href="<?php echo BASE_URL;?>
+">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">

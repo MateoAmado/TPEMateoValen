@@ -16,8 +16,8 @@
             </div>
             <p>{$ejercicio->descripcion_ej}</p>
             <div class="botones">
-            <button>Editar</button>
-            <button>Eliminar</button>
+            <a href="ejercicios/{$ejercicio->id_ejer}/editar">Editar</button>
+            <a href="ejercicios/{$ejercicio->id_ejer}/eliminar">Eliminar</button>
             </div>
         </div>
     </div>

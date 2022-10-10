@@ -1,10 +1,10 @@
 {include 'header.tpl'};
 <div class="form">
-    <form action="ejercicios/{$ejercicio->id_ejer}/editar/confirmar" method="POST">
+    <form action="ejercicios/agregar/confirmar" method="POST">
           <div class="formnombre">
-          <h2>Editar ejercicio</h2>
+          <h2>Agregar ejercicio</h2>
           <label for="nombre_ej">Nombre del Ejercicio:</label>
-          <input type="text" name="nombre_ejercicio" value="{$ejercicio->nombre_ej}">
+          <input type="text" name="nombre_ejercicio" >
           </div>
           <div class="formmusculo">
         <label for="nombre_musculo">Nombre del Musculo:</label>
@@ -28,9 +28,9 @@
           </div>
           <div class="formseccion">
             <label for="seccion">Seccion del Ejercicio:</label>
-          <input type="text" name="seccion" id="" value="{$ejercicio->seccion_ej}">
+          <input type="text" name="seccion" id="" >
           <label for="descripcion">Descripcion del Ejercicio:</label>
-          <input type="text" name="descripcion" id="" value="{$ejercicio->descripcion_ej}">
+          <input type="text" name="descripcion" id="">
           </div>
           <input type="submit">
         </form>

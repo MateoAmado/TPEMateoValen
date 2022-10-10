@@ -34,6 +34,18 @@ class EjerciciosModel {
 
     }
 
+    public function EliminarEjercicio($id){
+        $sentencia = $this->db->prepare('DELETE FROM `ejercicios` WHERE id_ejer=?');
+        $sentencia->execute([$id]);
+
+    }
+
+    public function AgregarEjercicio($nombre_ej, $musculo_id, $intensidad, $seccion, $descripcion){
+        $sentencia = $this->db->prepare('INSERT INTO ejercicios(id_ejer, nombre_ej, musculo_id, intensidad_ej, seccion_ej, descripcion_ej) VALUES(?,?,?,?,?,?)');
+        $sentencia->execute([$this->db->lastInsertId(), $nombre_ej, $musculo_id, $intensidad, $seccion, $descripcion]);
+        
+    }
+
 
 
 }
