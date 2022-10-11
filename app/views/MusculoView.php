@@ -19,4 +19,17 @@ class MusculoView{
         $this->smarty->display('musculo.tpl');
     }
 
+    function MostrarFormulario($musculo){
+        $this->smarty->assign('musculo', $musculo);
+        $this->smarty->display('musculoform.tpl');
+    }
+    function VerificarEliminacion($musculo){
+        $this->smarty->assign('musculo',$musculo);
+        $this->smarty->display('verificareliminacion.tpl');
+    }
+    function MostrarAgregar(){
+        $this->smarty->display('agregarmusculo.tpl');
+    }
+
+
 }

@@ -9,12 +9,9 @@
           <div class="formmusculo">
         <label for="nombre_musculo">Nombre del Musculo:</label>
         <select name="nombre_musculo">
-            <option value="1">Pecho</option>
-            <option value="2">Espalda</option>
-            <option value="3">Piernas</option>
-            <option value="4">Biceps</option>
-            <option value="5">Triceps</option>
-            <option value="6">Hombros</option>
+        {foreach $musculos as $musculo}
+            <option value="{$musculo->id}">{$musculo->nombre_musculo}</option>
+        {{/foreach}}
         </select>
           </div>
           <div class="formintensidad">

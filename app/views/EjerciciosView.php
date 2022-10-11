@@ -8,8 +8,9 @@ class EjerciciosView {
         $this->smarty = new Smarty();
     }
 
-    function MostrarEjercicios($ejercicios){
-        $this->smarty->assign('count', count($ejercicios)); 
+    function MostrarEjercicios($ejercicios, $musculos){
+        //$this->smarty->assign('count', count($ejercicios));
+         $this->smarty->assign('musculos', $musculos);
         $this->smarty->assign('ejercicios', $ejercicios);
         $this->smarty->display('tablaejercicios.tpl');
     }
@@ -19,7 +20,8 @@ class EjerciciosView {
         $this->smarty->display('ejercicio.tpl');
     }
     
-     function EditarEjercicio($ejercicio){
+     function EditarEjercicio($ejercicio, $musculos){
+        $this->smarty->assign('musculos',$musculos);
         $this->smarty->assign('ejercicio', $ejercicio);
         $this->smarty->display('editarejer.tpl');
      }
@@ -27,7 +29,8 @@ class EjerciciosView {
         $this->smarty->assign('ejercicio', $ejercicio);
         $this->smarty->display('EliminarEjer.tpl');
      }
-    function EjercicioNuevoForm(){
+    function EjercicioNuevoForm($musculos){
+        $this->smarty->assign('musculos', $musculos);
         $this->smarty->display('agregarForm.tpl');
      }
 

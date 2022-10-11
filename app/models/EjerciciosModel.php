@@ -45,6 +45,19 @@ class EjerciciosModel {
         $sentencia->execute([$this->db->lastInsertId(), $nombre_ej, $musculo_id, $intensidad, $seccion, $descripcion]);
         
     }
+    //para el formulario al editar:
+    public function obtenermusculos(){
+        $sentencia = $this->db->prepare("SELECT * FROM musculos");
+        $sentencia->execute();
+
+        $musculos = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        return $musculos;
+    }
+
+    public function FiltrarEjercicios($musculo){
+        $sentencia = $this->db->prepare('SELECT `id_ejer`, `nombre_ej`, `musculo_id`, `intensidad_ej`, `seccion_ej`, `descripcion_ej` FROM `ejercicios` WHERE musculo_id=?');
+        $sentencia->execute([$musculo]);
+    }
 
 
 

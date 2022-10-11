@@ -24,6 +24,9 @@ switch ($params[0]){
         if(empty($params[1]) || $params[1]<0){
         $EjerciciosController->MostrarEjercicios();
         }
+        else if($params[1]=="filtro"){
+         $EjerciciosController->MostrarFiltro();
+        }
         else if(!empty($params[2])){
             if ($params[2] == "editar"){
                 if (!empty($params[3]) && $params[3]=="confirmar"){
@@ -59,6 +62,26 @@ switch ($params[0]){
     case 'musculos':
         if(empty($params[1])){
             $MusculosController->Mostrar_Musculos();
+        }
+        else if(!empty($params[1]) && $params[1]=="agregar"){
+           $MusculosController->Agregar_Musculo();
+           if(!empty($params[2]) && $params[2]=="confirmar"){
+            $MusculosController->ConfirmarAgregar();
+           }
+        }
+        else if(!empty($params[2])){
+            if($params[2]=="editar"){
+                $MusculosController->Editar_Musculo($params[1]);
+                if(!empty($params[3]) && $params[3]=="confirmar"){
+                    $MusculosController->Confirmar_Edicion($params[1]);
+                }
+            }
+            else if($params[2]=="eliminar"){
+                $MusculosController->Eliminar_Musculo($params[1]);
+                if(!empty($params[3]) && $params[3]=="confirmar"){
+                    $MusculosController->Confirmar_Eliminacion($params[1]);
+                }
+            }
         }
         else{
             $MusculosController->Mostrar_Musculo($params[1]);

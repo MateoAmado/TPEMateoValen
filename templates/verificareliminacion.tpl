@@ -1,17 +1,15 @@
+
 {include 'header.tpl'}
+<h2>Estas Seguro de Eliminar este Musculo?</h2>
     <div class="flex">
-    {foreach $musculos as $musculo}
         <div class="card">
           <h2>{$musculo->nombre_musculo}</h2>
           <div class="popo">
           <h3>{$musculo->division_musculo}</h3>
           </div>
-          <a href="musculos/{$musculo->id}">Leer mas</a>
           <div class="botones">
-            <a href="musculos/{$musculo->id}/editar">Editar</a>
-            <a href="musculos/{$musculo->id}/eliminar">Eliminar</a>
+            <a href="musculos/{$musculo->id}/eliminar/confirmar">Eliminar</a>
             </div>
         </div>
-      {/foreach}
       </div>
 {include 'footer.tpl'};

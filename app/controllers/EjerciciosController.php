@@ -14,7 +14,8 @@ class EjerciciosController {
 
     public function MostrarEjercicios() {
         $ejercicios = $this->model->obtenerEjercicios();
-        $this->view->MostrarEjercicios($ejercicios);
+        $musculos = $this->model->obtenermusculos();
+        $this->view->MostrarEjercicios($ejercicios, $musculos);
     }
 
     public function Mostrar_Ejercicio($id){
@@ -24,7 +25,8 @@ class EjerciciosController {
 
     public function Editar_Ejercicio($id){
         $ejercicio = $this->model->obtenerEjercicio($id);
-        $this->view->EditarEjercicio($ejercicio);
+        $musculos = $this->model->obtenermusculos();
+        $this->view->EditarEjercicio($ejercicio, $musculos);
     }
 
     public function ConfirmarEdicion($id){
@@ -52,7 +54,8 @@ class EjerciciosController {
     }
 
     public function Obtener_Ejercicio_Nuevo(){
-        $this->view->EjercicioNuevoForm();
+       $musculos = $this->model->obtenermusculos();
+        $this->view->EjercicioNuevoForm($musculos);
     }
 
     public function ConfirmarAgregar(){
@@ -67,6 +70,14 @@ class EjerciciosController {
 
         $this->model->AgregarEjercicio($nombre_ej, $musculo, $intensidad, $seccion, $descripcion);
          $this->view->Confirmar();
+    }
+
+    public function MostrarFiltro(){
+        $musculo = $_GET['nombre_musculo'];
+        $musculo = (int) $musculo;
+        $musculos = $this->model->obtenermusculos();
+        $ejercicios = $this->model->FiltrarEjercicios($musculo);
+        $this->view->MostrarEjercicios($ejercicios, $musculos);
     }
 
 }
