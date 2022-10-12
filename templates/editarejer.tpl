@@ -18,7 +18,7 @@
         <label for="Intensidad">Intensidad:</label>
           <p>Baja</p>
           <input type="radio" name="Intensidad" value="1">
-          <p>Meida</p>
+          <p>Media</p>
           <input type="radio" name="Intensidad" value="2">
           <p>Alta</p>
           <input type="radio" name="Intensidad" value="3">

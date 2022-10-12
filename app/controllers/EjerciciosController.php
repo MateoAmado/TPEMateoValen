@@ -73,7 +73,7 @@ class EjerciciosController {
     }
 
     public function MostrarFiltro(){
-        $musculo = $_GET['nombre_musculo'];
+        $musculo = $_POST['nombre_musculo'];
         $musculo = (int) $musculo;
         $musculos = $this->model->obtenermusculos();
         $ejercicios = $this->model->FiltrarEjercicios($musculo);

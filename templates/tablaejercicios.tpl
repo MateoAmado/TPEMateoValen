@@ -1,7 +1,7 @@
 {include 'header.tpl'}
    <div>
    <h3>Filtrar por Musculo: </h3>
-   <form action="ejercicios/filtro" method="GET">
+   <form action="ejercicios/filtro" method="POST">
    <select name="nombre_musculo">
         {foreach $musculos as $musculo}
             <option value="{$musculo->id}">{$musculo->nombre_musculo}</option>
