@@ -20,15 +20,18 @@ class AuthController {
         if(!empty($_POST['username']) && !empty($_POST['password'])){
         $username = $_POST['username'];
         $password = $_POST['password'];
+        $passwordhash = password_hash($password, PASSWORD_BCRYPT);
         }
 
-        $user = $this->model->BuscarUsuario($username);
+        //$user="pepe";
+        //$user = $this->model->BuscarUsuario($username);
         // TODO: hacer esto de aca abajo
-        if ($user->user == $username){
+        if ($this->model->BuscarUsuario($username)){
             $error = "Este ususario ya existe";
             $this->view->MostrarFormRegistro($error);
         }
         else{
+            $this->model->CargarUsuario($username, $passwordhash);
             header("Location: " . BASE_URL);
         }
     }

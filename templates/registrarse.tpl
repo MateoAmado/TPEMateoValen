@@ -20,7 +20,7 @@
 	<h4 class="card-title text-center mb-4 mt-1">Registrarse</h4>
 	<hr>
 	<p class="text-success text-center">..</p>
-	<form action="" method="POST">
+	<form action="confirmarregistro" method="POST">
 	<div class="form-group">
 	<div class="input-group">
 		<div class="input-group-prepend">
