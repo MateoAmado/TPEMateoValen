@@ -2,6 +2,7 @@
 require_once './app/controllers/HomeController.php';
 require_once './app/controllers/EjerciciosController.php';
 require_once './app/controllers/MusculoController.php';
+require_once './app/controllers/AuthController.php';
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
@@ -15,10 +16,23 @@ $params = explode('/', $action);
 $HomeController = new HomeController();
 $EjerciciosController = new EjerciciosController();
 $MusculosController = new MusculoController();
+$AuthController = new AuthController();
 
 switch ($params[0]){
     case 'home':
         $HomeController->Mostrar();
+        break;
+    case 'register':
+        $AuthController->Mostrar_FormRegistro();
+        break;
+    case 'confirmarregistro':
+        $AuthController->Verificar_Nuevo_Usuario();
+        break;
+    case 'login':
+        $AuthController->Mostrar_Inicio();
+        break;
+    case 'validar':
+        $AuthController->Validar_Usuario();
         break;
     case 'ejercicios':
         if (empty($params[1]) || !isset($params[1])){
