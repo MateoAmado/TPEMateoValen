@@ -118,6 +118,16 @@ class EjerciciosController {
         $musculo = $_POST['nombre_musculo'];
         $musculo = (int) $musculo;
         $musculos = $this->model->obtenermusculos();
+       /*  $musculo_elegido=array(id=>0, nombre_musculo=>"hola");
+        if(isset($musculo_id)){
+            foreach($musculos as $musculo){
+                  if($musculo_id == $musculo->id){
+                    $musculo_elegido->id = $musculo->id;
+                    $musculo_elegido->nombre_musculo = $musculo->nombre_musculo;
+                  }
+            }
+        }
+        var_dump($musculo_elegido); */
         $ejercicios = $this->model->FiltrarEjercicios($musculo);
         $this->view->MostrarEjercicios($ejercicios, $musculos);
     }

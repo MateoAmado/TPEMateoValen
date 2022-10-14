@@ -57,7 +57,7 @@ class EjerciciosModel {
         $sentencia = $this->db->prepare('SELECT id_ejer, nombre_ej, musculo_id, intensidad_ej, seccion_ej, descripcion_ej, nombre_musculo FROM ejercicios as e, musculos as m WHERE musculo_id=? AND m.id = e.musculo_id');
         $sentencia->execute([$musculo]);
 
-        $musculos = $sentencia->fetchAll(PDO::FETCH_OBJ);
-        return $musculos;
+        $ejercicios = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        return $ejercicios;
     }
 }

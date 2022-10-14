@@ -17,10 +17,6 @@
           <h3>{$ejercicio->seccion_ej}</h3>
           </div>
           <a href="ejercicios/{$ejercicio->id_ejer}">Leer mas</a>
-          <div class="botones">
-            <button>Editar</button>
-            <button>Eliminar</button>
-            </div>
         </div>
       {/foreach}
       </div>

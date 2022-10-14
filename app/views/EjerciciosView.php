@@ -33,7 +33,7 @@ class EjerciciosView {
         $this->smarty->assign('musculos', $musculos);
         $this->smarty->display('agregarform.tpl');
      }
-     function confirmar($texto){
+     function Confirmar($texto){
         $this->smarty->assign('texto', $texto);
         $this->smarty->display('confirmar.tpl');
      }

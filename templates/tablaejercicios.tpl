@@ -3,10 +3,10 @@
    <h3>Filtrar por Musculo: </h3>
    <form action="ejercicios/filtro" method="POST">
    <select name="nombre_musculo">
-        {foreach $musculos as $musculo}
+      {foreach $musculos as $musculo}
             <option value="{$musculo->id}">{$musculo->nombre_musculo}</option>
-        {{/foreach}}
-        <input type="submit">
+        {/foreach}
+        <input type="submit" value="Filtrar">
    </form>
    </div>
     <div class="flex">
@@ -33,4 +33,5 @@
         </div>
       {/foreach}
       </div>
+      <a href="ejercicios/agregar">Agregar ejercicio</a>
 {include 'footer.tpl'};

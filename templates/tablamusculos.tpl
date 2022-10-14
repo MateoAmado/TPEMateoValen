@@ -14,4 +14,5 @@
         </div>
       {/foreach}
       </div>
+      <a href="musculos/agregar">Agregar musculo</a>
 {include 'footer.tpl'};
