@@ -16,16 +16,7 @@ class AuthModel{
             $sentencia = $this->db->prepare("SELECT * FROM `usuarios` WHERE nombre_usuario=?");
             $sentencia->execute([$username]);
 
-            $arreglo = $sentencia->fetch(PDO::FETCH_OBJ);
-              
-            if(!empty($arreglo)){
-              return true;
-            }
-            else{
-              return false;
-            }
-            //$username = $sentencia->fetch(PDO::FETCH_OBJ);
-            //return $username;
-
+            $username = $sentencia->fetch(PDO::FETCH_OBJ);
+            return $username;
       }
 }

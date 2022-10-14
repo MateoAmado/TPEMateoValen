@@ -31,5 +31,9 @@ class MusculoView{
         $this->smarty->display('agregarmusculo.tpl');
     }
 
+    function Confirmacion($texto){
+        $this->smarty->assing('texto', $texto);
+        $this->smarty->display('confirmar.tpl');
+    }
 
 }

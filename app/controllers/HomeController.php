@@ -1,6 +1,7 @@
 <?php
 require_once './app/views/HomeView.php';
 require_once './app/models/HomeModel.php';
+require_once './app/helpers/AuthHelper.php';
 
 
 class HomeController {
@@ -10,6 +11,9 @@ class HomeController {
     public function __construct() {
         $this->model = new HomeModel();
         $this->view = new HomeView();
+
+        $authHelper = new AuthHelper();
+        // $authHelper->checkLoggedIn();
 
     }
 

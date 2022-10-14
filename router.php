@@ -1,10 +1,12 @@
 <?php
+define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
+define('EJERCICIOS', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/ejercicios');
+define('MUSCULOS', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/musculos');
+
 require_once './app/controllers/HomeController.php';
 require_once './app/controllers/EjerciciosController.php';
 require_once './app/controllers/MusculoController.php';
 require_once './app/controllers/AuthController.php';
-
-define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
 $action = 'home'; 
 if (!empty($_GET['action'])) { 
@@ -52,10 +54,15 @@ switch ($params[0]){
                     break;
                 case 'filtro':
                     $EjerciciosController->MostrarFiltro();
-                    break;    
+                    break;
                 case ($params[1]>0):
-                    if (empty($params[2]) || !isset($params[2])){
+                    if (!isset($params[2]) || empty($params[2])){
+                        if (is_numeric($params[1])){
                         $EjerciciosController->Mostrar_Ejercicio($params[1]);
+                        }
+                        else{
+                            echo "PAGINA NO ENCONTRADA ERROR 404";
+                        }
                     }
                     else{
                         switch ($params[2]){
@@ -104,7 +111,12 @@ switch ($params[0]){
                         break;
                     case ($params[1]>0):
                         if (empty($params[2]) || !isset($params[2])){
-                            $MusculosController->Mostrar_Musculo($params[1]);
+                                if (is_numeric($params[1])){
+                                $MusculosController->Mostrar_Musculo($params[1]);
+                                }
+                                else{
+                                    echo "PAGINA NO ENCONTRADA ERROR 404";
+                                }
                         }
                         else{
                             switch ($params[2]){
@@ -127,6 +139,7 @@ switch ($params[0]){
                                 break;
                                 }
                         }
+            break;
             default:
             echo "PAGINA NO ENCONTRADA ERROR 404";
             break;

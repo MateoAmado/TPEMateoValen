@@ -1,6 +1,5 @@
 <?php
 
-
 class EjerciciosModel {
     private $db;
 

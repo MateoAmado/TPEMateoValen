@@ -27,11 +27,15 @@ class EjerciciosView {
      }
      function EliminarEjercicioView($ejercicio){
         $this->smarty->assign('ejercicio', $ejercicio);
-        $this->smarty->display('EliminarEjer.tpl');
+        $this->smarty->display('eliminarejer.tpl');
      }
     function EjercicioNuevoForm($musculos){
         $this->smarty->assign('musculos', $musculos);
-        $this->smarty->display('agregarForm.tpl');
+        $this->smarty->display('agregarform.tpl');
+     }
+     function confirmar($texto){
+        $this->smarty->assign('texto', $texto);
+        $this->smarty->display('confirmar.tpl');
      }
 
 }

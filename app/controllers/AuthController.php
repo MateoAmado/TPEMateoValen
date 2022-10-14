@@ -23,10 +23,8 @@ class AuthController {
         $passwordhash = password_hash($password, PASSWORD_BCRYPT);
         }
 
-        //$user="pepe";
-        //$user = $this->model->BuscarUsuario($username);
-        // TODO: hacer esto de aca abajo
-        if ($this->model->BuscarUsuario($username)){
+        $user = $this->model->BuscarUsuario($username);
+        if ($username == $user->user){
             $error = "Este ususario ya existe";
             $this->view->MostrarFormRegistro($error);
         }
