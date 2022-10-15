@@ -1,7 +1,8 @@
 {include 'header.tpl'}
    <div>
+   <div id="formulariofiltro">
    <h3 class="filtrado">Filtrar Ejercicios por Musculo: </h3>
-   <form action="ejercicios/filtro" method="POST">
+   <form class="formselect" action="ejercicios/filtro" method="POST">
 
    <select name="nombre_musculo">
       {foreach $musculos as $musculo}
@@ -14,10 +15,11 @@
         <input type="submit" value="Filtrar">
    </select>
    <p></p>
-   {if isset($smarty.session.username) && $smarty.session.rol=="admin"}
-   <a href="ejercicios/agregar">Agregar ejercicio</a>
-   {/if}
    </form>
+   </div>
+   {if isset($smarty.session.username) && $smarty.session.rol=="admin"}
+   <a class="agregarej" href="ejercicios/agregar">Agregar ejercicio</a>
+   {/if}
    </div>
     <div class="flex">
     {foreach $ejercicios as $ejercicio}

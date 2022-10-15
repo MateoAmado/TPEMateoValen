@@ -1,6 +1,6 @@
 
 {include 'header.tpl'}
-<h2>Estas Seguro de Eliminar este Musculo?</h2>
+<h2 class="mensaje">Estas Seguro de Eliminar este Musculo?</h2>
     <div class="flex">
         <div class="card">
           <h2>{$musculo->nombre_musculo}</h2>

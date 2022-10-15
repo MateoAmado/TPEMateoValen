@@ -1,5 +1,5 @@
 {include 'header.tpl'};
-<h2>{$texto}</h2>
+<h2 class="mensaje">{$texto}</h2>
 {if (isset($ejercicios))}
     <div class="flex">
     {foreach $ejercicios as $ejercicio}

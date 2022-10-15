@@ -1,7 +1,6 @@
 *{
     margin:0px;
     padding:0px;
-    
   }
   .card{
     border: 5px black solid;
@@ -23,18 +22,24 @@
     justify-content:space-evenly;
   }
   .flex{
-    margin-top: 60px;
+    margin-top: 50px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: center;
   }
-  
   .botones{
     display:flex;
     justify-content:space-evenly;
   }
-  
+  .botones a{
+    text-decoration: none;
+    font-size: larger;
+    border: black 2.5px solid;
+    padding: 2px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+  }
   .form{
     padding: 20px;
   }
@@ -47,9 +52,58 @@
     text-align: center;
   }
   .formulario{
-    margin-top:50px;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    font-size: x-large;
+    border: solid black 5px;
+    border-left: none;
+    border-right: none;
+    justify-content: space-between;
+    align-items: center;
   }
   .filtrado{
     margin-top: 50px;
   }
-  
+  #formulariofiltro{
+    display: flex;
+    margin-top: 20px;
+    font-size: large;
+  }
+  .formselect{
+    margin-top: 58px;
+    margin-left: 10px;
+  }
+  .agregarej{
+    padding: 5px;
+    font-size: x-large;
+    border: 3.5px black solid;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    text-decoration: none;
+    margin-top: 18px;
+  }
+  .agregarmusculo{
+    margin-top: 80px;
+    padding: 5px;
+    font-size: x-large;
+    border: 3.5px black solid;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    text-decoration: none;
+  }
+  .mensaje{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin-top: 50px;
+    font-size: xxx-large;
+    justify-content: center;
+  }
+
+ 

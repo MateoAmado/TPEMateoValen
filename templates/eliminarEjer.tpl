@@ -1,5 +1,7 @@
 {include 'header.tpl'};
-<h2>Quieres elimar el ejercicio numero {$ejercicio->id_ejer} ?</h2>
+<h2 class="mensaje">Quieres eliminar el ejercicio numero {$ejercicio->id_ejer} ?</h2>
+<div class="flex">
+ <div class="card">
 <h2>{$ejercicio->nombre_ej}</h2>
 <div class="popo">
 <h3>{$ejercicio->nombre_musculo}</h3>
@@ -13,5 +15,9 @@
 {/if}</h3>
 <h3>{$ejercicio->seccion_ej}</h3>
   </div>
-  <a href="ejercicios/{$ejercicio->id_ejer}/eliminar/confirmar"> confirmar</a>
+     <div class="botones">
+      <a href="ejercicios/{$ejercicio->id_ejer}/eliminar/confirmar"> confirmar</a>
+     </div>
+ </div>
+</div>
 {include 'footer.tpl'};

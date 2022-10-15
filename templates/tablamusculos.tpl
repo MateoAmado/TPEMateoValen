@@ -1,6 +1,6 @@
 {include 'header.tpl'}
 {if isset($smarty.session.username) && $smarty.session.rol=="admin"}
-  <a href="musculos/agregar">Agregar musculo</a>
+  <a class="agregarmusculo" href="musculos/agregar">Agregar musculo</a>
 {/if}
     <div class="flex">
     {foreach $musculos as $musculo}
