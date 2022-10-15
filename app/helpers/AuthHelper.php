@@ -2,10 +2,18 @@
 
 class AuthHelper {
     function checkLoggedIn() {
-        session_start();
-         if (!isset($_SESSION['user'])) {
-           header("Location:" .LOGIN);
-           die();
-        }
+        if(session_status() != PHP_SESSION_ACTIVE){
+            session_start();
+          };
     }
+
+    //TODO: Preguntar porque no funca >:(
+    /* function checkAdmin(){
+        if($_SESSION['rol']=="admin"){
+            return true;
+        }
+        else{
+            return false;
+        }
+    } */
 }

@@ -7,7 +7,7 @@ class HomeModel{
 
      }
 
-     public function obtenerejerciciosrandom(){
+     public function obtenerEjerciciosRandom(){
         $sentencia = $this->db->prepare("SELECT ejercicios.*, musculos.nombre_musculo FROM ejercicios JOIN musculos ON ejercicios.musculo_id = musculos.id ORDER BY RAND() LIMIT 6;");
         $sentencia->execute();
 

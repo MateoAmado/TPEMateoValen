@@ -25,7 +25,7 @@ class EjerciciosModel {
         return $ejercicio;
     }
 
-    public function ModificarEjercicio($id, $nombre_ej, $musculo, $intensidad, $seccion, $descripcion){
+    public function modificarEjercicio($id, $nombre_ej, $musculo, $intensidad, $seccion, $descripcion){
         
         
          $sentencia = $this->db->prepare("UPDATE `ejercicios` SET `nombre_ej`='$nombre_ej',`musculo_id`='$musculo',`intensidad_ej`='$intensidad',`seccion_ej`='$seccion',`descripcion_ej`='$descripcion' WHERE id_ejer=?");
@@ -33,13 +33,13 @@ class EjerciciosModel {
 
     }
 
-    public function EliminarEjercicio($id){
+    public function borrarEjercicio($id){
         $sentencia = $this->db->prepare('DELETE FROM `ejercicios` WHERE id_ejer=?');
         $sentencia->execute([$id]);
 
     }
 
-    public function AgregarEjercicio($nombre_ej, $musculo_id, $intensidad, $seccion, $descripcion){
+    public function agregarEjercicio($nombre_ej, $musculo_id, $intensidad, $seccion, $descripcion){
         $sentencia = $this->db->prepare('INSERT INTO ejercicios(id_ejer, nombre_ej, musculo_id, intensidad_ej, seccion_ej, descripcion_ej) VALUES(?,?,?,?,?,?)');
         $sentencia->execute([$this->db->lastInsertId(), $nombre_ej, $musculo_id, $intensidad, $seccion, $descripcion]);
         
@@ -53,7 +53,7 @@ class EjerciciosModel {
         return $musculos;
     }
 
-    public function FiltrarEjercicios($musculo){
+    public function filtrarEjercicios($musculo){
         $sentencia = $this->db->prepare('SELECT id_ejer, nombre_ej, musculo_id, intensidad_ej, seccion_ej, descripcion_ej, nombre_musculo FROM ejercicios as e, musculos as m WHERE musculo_id=? AND m.id = e.musculo_id');
         $sentencia->execute([$musculo]);
 

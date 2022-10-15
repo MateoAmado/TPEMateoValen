@@ -12,93 +12,116 @@ class MusculoController{
        $this->view = new MusculoView();
 
       $authHelper = new AuthHelper();
-      if (session_status() != PHP_SESSION_ACTIVE){
-        session_start();
-      };
+      $authHelper->checkLoggedIn();
     }
 
-   public function Mostrar_Musculos(){
+   public function mostrarMusculos(){
       $musculos = $this->model->obtenerMusculos();
-      $this->view->MostrarMusculos($musculos);
+      $this->view->mostrarViewMusculos($musculos);
     }
 
-    public function Mostrar_Musculo($id){
+    public function mostrarMusculo($id){
       $musculo = $this->model->obtenerMusculo($id);
       if (!empty($musculo)){
-        $this->view->MostrarMusculo($musculo);
+        $this->view->mostrarViewMusculo($musculo);
       }
       else{
         header("Location: " . MUSCULOS);
       }
     }
 
-    public function Editar_Musculo($id){
+    public function editarMusculo($id){
+      if($_SESSION['rol']=="admin"){
       $musculo = $this->model->obtenerMusculo($id);
       if (!empty($musculo)){
-      $this->view->MostrarFormulario($musculo);
+      $this->view->mostrarFormulario($musculo);
       }
       else{
         header("Location: " . MUSCULOS);
       }
+    }else{
+      header("Location: " . MUSCULOS);
     }
+  }
 
-    public function Confirmar_Edicion($id){
+    public function confirmarEdicion($id){
+      if($_SESSION['rol']=="admin"){
       if (isset($_POST['nombre']) && !empty($_POST['nombre']) &&
           isset($_POST['division']) && !empty($_POST['division'])){
       $nombre_musculo = $_POST['nombre'];
       $division_musculo = $_POST['division'];
       $id = (int) $id;
 
-      $this->model->EditarMusculo($id, $nombre_musculo, $division_musculo);
-      $this->view->Confirmacion("Este musculo se edito de forma correcta");
+      $this->model->actualizarMusculo($id, $nombre_musculo, $division_musculo);
+      $this->view->confirmacion("Este musculo se edito de forma correcta");
       }
       else{
-        $this->view->Confirmacion("Este musculo no se pudo editar");
+        $this->view->confirmacion("Este musculo no se pudo editar");
           }
-    }
-
-    public function Eliminar_Musculo($id){
-        $musculo = $this->model->obtenerMusculo($id);
-        if (!empty($musculo)){
-        $this->view->VerificarEliminacion($musculo);
-      }
-      else {
+      }else{
         header("Location: " . MUSCULOS);
       }
     }
 
-    public function Confirmar_Eliminacion($id){
+    public function eliminarMusculo($id){
+      if($_SESSION['rol']=="admin"){
+        $musculo = $this->model->obtenerMusculo($id);
+        if (!empty($musculo)){
+        $this->view->verificarEliminacion($musculo);
+      }
+      else {
+        header("Location: " . MUSCULOS);
+      }
+    }else{
+      header("Location: " . MUSCULOS);
+    }
+  }
+
+    public function confirmarEliminacion($id){
+      if($_SESSION['rol']=="admin"){
       $musculo = $this->model->obtenerMusculo($id);
       $ejercicios = $this->model->obtenerejercicios($id);
       if (!empty($musculo)){
         if(!empty($ejercicios)){
-          $this->view->Confirmacion("No se puede eliminar el musculo, debido a que existen estos ejercicios:", $ejercicios);
+          $this->view->confirmacion("No se puede eliminar el musculo, debido a que existen estos ejercicios:", $ejercicios);
         }
         else{
-          $this->model->EliminarMusculo($id);
-          $this->view->Confirmacion("Se ha eliminado el musculo");
+          $this->model->borrarMusculo($id);
+          $this->view->confirmacion("Se ha eliminado el musculo");
         }
       }
       else{
-        $this->view->Confirmacion("Se ha producido un error, intente nuevamente");
+        $this->view->confirmacion("Se ha producido un error, intente nuevamente");
+      }
+    }else{
+      header("Location: " . MUSCULOS);
+    }
+  }
+
+    public function agregarMusculo(){
+      if($_SESSION['rol']=="admin"){
+       $this->view->mostrarAgregar();
+      }
+      else{
+        header("Location: " . MUSCULOS);
       }
     }
 
-    public function Agregar_Musculo(){
-       $this->view->MostrarAgregar();
-    }
-
-    public function ConfirmarAgregar(){
+    public function confirmarAgregar(){
+      if($_SESSION['rol']=="admin"){
       if (isset($_POST['nombre']) && !empty($_POST['nombre']) &&
           isset($_POST['division']) && !empty($_POST['division'])){
         $nombre_musculo = $_POST['nombre'];
         $division_musculo = $_POST['division'];
-        $this->model->AgregarMusculo($nombre_musculo, $division_musculo);
-        $this->view->Confirmacion("se agrego el musculo correctamente");
+        $this->model->insertarMusculo($nombre_musculo, $division_musculo);
+        $this->view->confirmacion("se agrego el musculo correctamente");
         }
         else{
-          $this->view->Confirmacion("No se pudo añadir este musculo a la lista de categorias, chequea los datos e intenta nuevamente");
+          $this->view->confirmacion("No se pudo añadir este musculo a la lista de categorias, chequea los datos e intenta nuevamente");
         }
+      }else{
+        header("Location: " . MUSCULOS);
+      }
         
 
     }

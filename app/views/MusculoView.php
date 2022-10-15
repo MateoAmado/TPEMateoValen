@@ -8,30 +8,30 @@ class MusculoView{
         $this->smarty = new Smarty();
     }
 
-    function MostrarMusculos($musculos){
+    function mostrarViewMusculos($musculos){
         $this->smarty->assign('count', count($musculos)); 
         $this->smarty->assign('musculos', $musculos);
         $this->smarty->display('tablamusculos.tpl');
     }
 
-    function MostrarMusculo($musculo){
+    function mostrarViewMusculo($musculo){
         $this->smarty->assign('musculo', $musculo);
         $this->smarty->display('musculo.tpl');
     }
 
-    function MostrarFormulario($musculo){
+    function mostrarFormulario($musculo){
         $this->smarty->assign('musculo', $musculo);
         $this->smarty->display('musculoform.tpl');
     }
-    function VerificarEliminacion($musculo){
+    function verificarEliminacion($musculo){
         $this->smarty->assign('musculo',$musculo);
         $this->smarty->display('verificareliminacion.tpl');
     }
-    function MostrarAgregar(){
+    function mostrarAgregar(){
         $this->smarty->display('agregarmusculo.tpl');
     }
 
-    function Confirmacion($texto = null, $ejercicios = null){
+    function confirmacion($texto = null, $ejercicios = null){
         $this->smarty->assign('texto', $texto);
         $this->smarty->assign('ejercicios', $ejercicios);
         $this->smarty->display('confirmar.tpl');

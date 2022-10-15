@@ -13,9 +13,9 @@ class HomeController {
         $this->view = new HomeView();
     }
 
-    function Mostrar(){
-        $ejercicios = $this->model->obtenerejerciciosrandom();
-        $this->view->MostrarHome($ejercicios);
+    function mostrar(){
+        $ejercicios = $this->model->obtenerEjerciciosRandom();
+        $this->view->mostrarHome($ejercicios);
     }
 
 }

@@ -13,8 +13,8 @@ class AuthController {
         $this->view = new AuthView();
     }
 
-    public function Mostrar_FormRegistro(){
-        $this->view->MostrarFormRegistro();
+    public function mostrarFormRegistro(){
+        $this->view->mostrarFormularioRegistro();
     }
 
     public function verificarNuevoUsuario(){
@@ -24,38 +24,39 @@ class AuthController {
         $passwordhash = password_hash($password, PASSWORD_BCRYPT);
         }
 
-        $user = $this->model->BuscarUsuario($username);
+        $user = $this->model->buscarUsuario($username);
         if ($username == $user->user){
             $error = "Este ususario ya existe";
-            $this->view->MostrarFormRegistro($error);
+            $this->view->mostrarFormularioRegistro($error);
         }
         else{
-            $this->model->CargarUsuario($username, $passwordhash);
+            $this->model->cargarUsuario($username, $passwordhash);
             header("Location: " . BASE_URL);
         }
     }
 
-    public function Mostrar_Inicio(){
-        $this->view->MostrarInicio();
+    public function mostrarInicio(){
+        $this->view->mostrarViewInicio();
     }
 
     public function validarUsuario() {
         $username = $_POST['username'];
         $password = $_POST['password'];
 
-        $user = $this->model->BuscarUsuario($username);
+        $user = $this->model->buscarUsuario($username);
 
         if ($user && password_verify($password, $user->password)) {
 
             session_start();
             $_SESSION['user'] = $user->id_usuario;
             $_SESSION['username'] = $user->nombre_usuario;
+            $_SESSION['rol'] = $user->rol_usuario;
             $_SESSION['is_logged'] = true;
 
             header("Location: " . BASE_URL);
             die();
         } else {
-           $this->view->MostrarInicio("El usuario o la contraseña no existe.");
+           $this->view->mostrarViewInicio("El usuario o la contraseña no existe.");
         }
     }
 

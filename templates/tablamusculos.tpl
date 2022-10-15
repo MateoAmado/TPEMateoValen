@@ -1,4 +1,7 @@
 {include 'header.tpl'}
+{if isset($smarty.session.username) && $smarty.session.rol=="admin"}
+  <a href="musculos/agregar">Agregar musculo</a>
+{/if}
     <div class="flex">
     {foreach $musculos as $musculo}
         <div class="card">
@@ -8,11 +11,12 @@
           </div>
           <a href="musculos/{$musculo->id}">Leer mas</a>
           <div class="botones">
+          {if isset($smarty.session.username) && $smarty.session.rol=="admin"}
             <a href="musculos/{$musculo->id}/editar">Editar</a>
             <a href="musculos/{$musculo->id}/eliminar">Eliminar</a>
+          {/if}
             </div>
         </div>
       {/foreach}
       </div>
-      <a href="musculos/agregar">Agregar musculo</a>
 {include 'footer.tpl'};

@@ -9,7 +9,7 @@ class HomeView{
         $this->smarty = new Smarty(); 
     }
 
-    function MostrarHome($ejercicios){
+    function mostrarHome($ejercicios){
         $this->smarty->assign('ejercicios', $ejercicios);
         $this->smarty->display('home.tpl');
     }

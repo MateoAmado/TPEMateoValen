@@ -24,44 +24,44 @@ $AuthController = new AuthController();
 
 switch ($params[0]) {
     case 'home':
-        $HomeController->Mostrar();
+        $HomeController->mostrar();
         break;
-    case 'register':
-        $AuthController->Mostrar_FormRegistro();
+    case 'registrarse':
+        $AuthController->mostrarFormRegistro();
         break;
     case 'confirmarregistro':
         $AuthController->verificarNuevoUsuario();
         break;
-    case 'login':
-        $AuthController->Mostrar_Inicio();
+    case 'logearse':
+        $AuthController->mostrarInicio();
         break;
     case 'validar':
         $AuthController->validarUsuario();
         break;
-    case 'logout':
+    case 'deslogearse':
         $AuthController->logout();
         break;
     case 'ejercicios':
         if (empty($params[1]) || !isset($params[1])) {
-            $EjerciciosController->MostrarEjercicios();
+            $EjerciciosController->mostrarEjercicios();
         } else {
             switch ($params[1]) {
                 case 'agregar':
                     if (!empty($params[2]) && isset($params[2]) && $params[2] == 'confirmar') {
-                        $EjerciciosController->ConfirmarAgregar();
+                        $EjerciciosController->confirmarAgregar();
                     } else if (empty($params[2]) || !isset($params[2])) {
-                        $EjerciciosController->Obtener_Ejercicio_Nuevo();
+                        $EjerciciosController->obtenerEjercicioNuevo();
                     } else {
                         echo "PAGINA NO ENCONTRADA ERROR 404";
                     }
                     break;
                 case 'filtro':
-                    $EjerciciosController->MostrarFiltro();
+                    $EjerciciosController->mostrarFiltro();
                     break;
                 case ($params[1] > 0):
                     if (!isset($params[2]) || empty($params[2])) {
                         if (is_numeric($params[1])) {
-                            $EjerciciosController->Mostrar_Ejercicio($params[1]);
+                            $EjerciciosController->mostrarEjercicio($params[1]);
                         } else {
                             echo "PAGINA NO ENCONTRADA ERROR 404";
                         }
@@ -69,16 +69,16 @@ switch ($params[0]) {
                         switch ($params[2]) {
                             case 'editar':
                                 if (!empty($params[3]) && $params[3] == "confirmar") {
-                                    $EjerciciosController->ConfirmarEdicion($params[1]);
+                                    $EjerciciosController->confirmarEdicion($params[1]);
                                 } else {
-                                    $EjerciciosController->Editar_Ejercicio($params[1]);
+                                    $EjerciciosController->editarEjercicio($params[1]);
                                 }
                                 break;
                             case 'eliminar':
                                 if (!empty($params[3]) && $params[3] == "confirmar") {
-                                    $EjerciciosController->ConfirmarEliminar($params[1]);
+                                    $EjerciciosController->confirmarEliminar($params[1]);
                                 } else {
-                                    $EjerciciosController->Eliminar_Ejercicio($params[1]);
+                                    $EjerciciosController->eliminarEjercicio($params[1]);
                                 }
                                 break;
                             default:
@@ -95,14 +95,14 @@ switch ($params[0]) {
         break;
     case 'musculos':
         if (empty($params[1]) || !isset($params[1])) {
-            $MusculosController->Mostrar_Musculos();
+            $MusculosController->mostrarMusculos();
         } else {
             switch ($params[1]) {
                 case 'agregar':
                     if (!empty($params[2]) && isset($params[2]) && $params[2] == 'confirmar') {
-                        $MusculosController->ConfirmarAgregar();
+                        $MusculosController->confirmarAgregar();
                     } else if (empty($params[2]) || !isset($params[2])) {
-                        $MusculosController->Agregar_Musculo();
+                        $MusculosController->agregarMusculo();
                     } else {
                         echo "PAGINA NO ENCONTRADA ERROR 404";
                     }
@@ -110,7 +110,7 @@ switch ($params[0]) {
                 case ($params[1] > 0):
                     if (empty($params[2]) || !isset($params[2])) {
                         if (is_numeric($params[1])) {
-                            $MusculosController->Mostrar_Musculo($params[1]);
+                            $MusculosController->mostrarMusculo($params[1]);
                         } else {
                             echo "PAGINA NO ENCONTRADA ERROR 404";
                         }
@@ -118,16 +118,16 @@ switch ($params[0]) {
                         switch ($params[2]){
                             case 'editar':
                                 if (!empty($params[3]) && $params[3] == "confirmar") {
-                                    $MusculosController->Confirmar_Edicion($params[1]);
+                                    $MusculosController->confirmarEdicion($params[1]);
                                 } else {
-                                    $MusculosController->Editar_Musculo($params[1]);
+                                    $MusculosController->editarMusculo($params[1]);
                                 }
                                 break;
                             case 'eliminar':
                                 if (!empty($params[3]) && $params[3] == "confirmar") {
-                                    $MusculosController->Confirmar_Eliminacion($params[1]);
+                                    $MusculosController->confirmarEliminacion($params[1]);
                                 } else {
-                                    $MusculosController->Eliminar_Musculo($params[1]);
+                                    $MusculosController->eliminarMusculo($params[1]);
                                 }
                                 break;
                             default:

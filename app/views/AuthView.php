@@ -9,13 +9,13 @@ class AuthView{
         $this->smarty = new Smarty(); 
     }
 
-    public function MostrarFormRegistro($error=null){    
+    public function mostrarFormularioRegistro($error=null){    
         if (isset($error)){
             $this->smarty->assign('error', $error);
         }
         $this->smarty->display('registrarse.tpl');
     }
-    public function MostrarInicio(){
+    public function mostrarViewInicio(){
         $this->smarty->display('login.tpl');
     }
 

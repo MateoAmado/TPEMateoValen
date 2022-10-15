@@ -8,7 +8,7 @@ class EjerciciosView {
         $this->smarty = new Smarty();
     }
 
-    function MostrarEjercicios($ejercicios, $musculos, $id_elegido = null){
+    function mostrarViewEjercicios($ejercicios, $musculos, $id_elegido = null){
         //$this->smarty->assign('count', count($ejercicios));
          $this->smarty->assign('musculos', $musculos);
         $this->smarty->assign('ejercicios', $ejercicios);
@@ -16,25 +16,25 @@ class EjerciciosView {
         $this->smarty->display('tablaejercicios.tpl');
     }
 
-      function MostrarEjercicio($ejercicio){
+      function mostrarViewEjercicio($ejercicio){
         $this->smarty->assign('ejercicio', $ejercicio);
         $this->smarty->display('ejercicio.tpl');
     }
     
-     function EditarEjercicio($ejercicio, $musculos){
+     function editarFormulario($ejercicio, $musculos){
         $this->smarty->assign('musculos',$musculos);
         $this->smarty->assign('ejercicio', $ejercicio);
         $this->smarty->display('editarejer.tpl');
      }
-     function EliminarEjercicioView($ejercicio){
+     function eliminarEjercicioView($ejercicio){
         $this->smarty->assign('ejercicio', $ejercicio);
         $this->smarty->display('eliminarejer.tpl');
      }
-    function EjercicioNuevoForm($musculos){
+    function ejercicioNuevoForm($musculos){
         $this->smarty->assign('musculos', $musculos);
         $this->smarty->display('agregarform.tpl');
      }
-     function Confirmar($texto){
+     function confirmar($texto){
         $this->smarty->assign('texto', $texto);
         $this->smarty->display('confirmar.tpl');
      }
