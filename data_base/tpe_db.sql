@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-10-2022 a las 20:00:01
+-- Tiempo de generación: 15-10-2022 a las 04:13:10
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -49,8 +49,7 @@ INSERT INTO `ejercicios` (`id_ejer`, `nombre_ej`, `musculo_id`, `intensidad_ej`,
 (6, 'Dominadas abiertas', 2, 3, 'Con barra de dominadas', 'Las dominadas abiertas son exactamente iguales que las dominadas convencionales, simplemente cambiando la posición de las manos. Se abren más las manos con el fin de trabajar más los músculos dorsales y se pueden realizar, con agarre supino y agarre pronador.'),
 (7, 'Sentadillas con barra', 3, 2, 'Con barra', 'Agarra la barra con ambas manos y pasa por debajo de ella.\r\nAntes de colocar la barra en los músculos superiores del cuello, tire de los hombros hacia atrás y comprima los omóplatos. Esto acumulará tensión en la parte superior de su cuerpo y evitará que la barra se acueste sobre su columna vertebral.\r\nCuando la barra esté bien colocada en los músculos de la parte superior del cuello, sáquela del soporte con la espalda recta.\r\nMire hacia adelante y asegúrese de que su columna vertebral esté derecha. Inspire, estire un poco el pecho y apriete el estómago.\r\nInicie el movimiento descendente empujando un poco la parte inferior hacia atrás y arrodillándose al mismo tiempo.\r\nUna vez que la articulación de la cadera esté ligeramente por debajo de l'),
 (8, 'Peso muerto sumo con barra', 3, 3, 'Con barra', 'Coloque la barra sobre una superficie adecuada.\r\nAbre tus piernas en un ancho más grande que los hombros.\r\nSujeta la barra con firmeza.\r\nAsegúrate de tener la espalda recta y no mires demasiado hacia adelante o hacia abajo.'),
-(9, 'Extensión de cuádriceps', 3, 1, 'Con maquina', 'Este punto tiene que ver con el rango de desplazamiento en la extensión de cuádriceps en máquina. La recomendación es que no llegues a los puntos máximos en el desplazamiento de las piernas. Esto quiere decir que no debes extenderlas por completo, ni tampoco superar los 90 grados en la flexión de la rodilla. \r\nRecuerda que, al realizar este ejercicio, no hay que separar los glúteos del asiento. El empeine del pie no debes de ponerlo en el soporte y el rodillo  de la máquina. La posición correcta de dicho soporte es alrededor de unos 10 cm arriba del tobillo.'),
-(12, 'asdadsdaasd', 5, 2, 'sdads', 'asdasd');
+(9, 'Extensión de cuádriceps', 3, 1, 'Con maquina', 'Este punto tiene que ver con el rango de desplazamiento en la extensión de cuádriceps en máquina. La recomendación es que no llegues a los puntos máximos en el desplazamiento de las piernas. Esto quiere decir que no debes extenderlas por completo, ni tampoco superar los 90 grados en la flexión de la rodilla. \r\nRecuerda que, al realizar este ejercicio, no hay que separar los glúteos del asiento. El empeine del pie no debes de ponerlo en el soporte y el rodillo  de la máquina. La posición correcta de dicho soporte es alrededor de unos 10 cm arriba del tobillo.');
 
 -- --------------------------------------------------------
 
@@ -74,8 +73,7 @@ INSERT INTO `musculos` (`id`, `nombre_musculo`, `division_musculo`) VALUES
 (3, 'Piernas', 'Psoas ilíaco, Cuadrado femoral, Géminos superior e inferior, Glúteos, Obturador externo y interno, Pififorme, Cuádriceps, Sartorio, Tensor de la fascia lata, Aductores, Pectíneo, Grácil, Bíceps femoral, Semitendinoso, Semimembranoso, Tibial anterior, Músculo extensor largo de los dedos, Músculo extensor largo del dedo gordo, Músculo peroneo anterior, Peroneo lateral largo y corto, Poplíteo, Músculo flexor común de los dedos de los pies, Músculo tibial posterior.'),
 (4, 'Biceps', 'Porción corta o interna y Porción larga o externa.'),
 (5, 'Triceps', 'Cabeza larga, Cabeza lateral y Cabeza medial.'),
-(6, 'Hombros', 'Pectoral mayor, Pectoral menor, Subclavio, Serrato anterior, Músculos extrínsecos, Músculos intrínsecos.'),
-(9, 'Carlos', 'POISDIAOSDIA');
+(6, 'Hombros', 'Pectoral mayor, Pectoral menor, Subclavio, Serrato anterior, Músculos extrínsecos, Músculos intrínsecos.');
 
 -- --------------------------------------------------------
 
@@ -96,7 +94,8 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id_usuario`, `nombre_usuario`, `password`, `rol_usuario`) VALUES
 (1, 'donpedro', '$2y$10$0CpZ1GpENP17o9UsdzV/U.EAX0NCgzjbGg38fggpPTShmqMV1HqJa', 'publico'),
-(2, 'pepe', '$2y$10$UfcXb9ILL/zLxxI6TEoBFOGoAO./tZ7TpapxabDRKydLf6QVZ2T4e', 'publico');
+(2, 'pepe', '$2y$10$UfcXb9ILL/zLxxI6TEoBFOGoAO./tZ7TpapxabDRKydLf6QVZ2T4e', 'publico'),
+(3, 'ValenAdmin', '$2y$10$iWz93JqXLkqHlnktZA2V6.Q7UDWZCVkgDxU9BS0JFX2N7P/NraTb2', 'admin');
 
 --
 -- Índices para tablas volcadas
@@ -129,19 +128,19 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `ejercicios`
 --
 ALTER TABLE `ejercicios`
-  MODIFY `id_ejer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_ejer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `musculos`
 --
 ALTER TABLE `musculos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
