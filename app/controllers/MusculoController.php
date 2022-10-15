@@ -12,7 +12,9 @@ class MusculoController{
        $this->view = new MusculoView();
 
       $authHelper = new AuthHelper();
-      // $authHelper->checkLoggedIn();
+      if (session_status() != PHP_SESSION_ACTIVE){
+        session_start();
+      };
     }
 
    public function Mostrar_Musculos(){

@@ -1,11 +1,11 @@
 <?php
 
 class AuthHelper {
-
-    protected function checkLoggedIn() {
+    function checkLoggedIn() {
         session_start();
-         if (isset($_SESSION['user']) ) {
-            
+         if (!isset($_SESSION['user'])) {
+           header("Location:" .LOGIN);
+           die();
         }
-    } 
+    }
 }

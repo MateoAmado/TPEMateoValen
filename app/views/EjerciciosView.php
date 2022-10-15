@@ -8,10 +8,11 @@ class EjerciciosView {
         $this->smarty = new Smarty();
     }
 
-    function MostrarEjercicios($ejercicios, $musculos){
+    function MostrarEjercicios($ejercicios, $musculos, $id_elegido = null){
         //$this->smarty->assign('count', count($ejercicios));
          $this->smarty->assign('musculos', $musculos);
         $this->smarty->assign('ejercicios', $ejercicios);
+        $this->smarty->assign('elegido', $id_elegido);
         $this->smarty->display('tablaejercicios.tpl');
     }
 

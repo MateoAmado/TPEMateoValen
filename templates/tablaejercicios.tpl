@@ -2,11 +2,17 @@
    <div>
    <h3>Filtrar por Musculo: </h3>
    <form action="ejercicios/filtro" method="POST">
+
    <select name="nombre_musculo">
       {foreach $musculos as $musculo}
-            <option value="{$musculo->id}">{$musculo->nombre_musculo}</option>
+         {if isset($elegido) && $elegido == $musculo->id}
+            <option selected value="{$musculo->id}">{$musculo->nombre_musculo}</option>
+            {else}
+               <option value="{$musculo->id}">{$musculo->nombre_musculo}</option>
+         {/if}
         {/foreach}
         <input type="submit" value="Filtrar">
+   </select>
    </form>
    </div>
     <div class="flex">

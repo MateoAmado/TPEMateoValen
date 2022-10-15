@@ -6,15 +6,11 @@ class HomeView{
     private $smarty;
 
     public function __construct() {
-        $this->smarty = new Smarty(); // inicializo Smarty
+        $this->smarty = new Smarty(); 
     }
 
-    function MostrarHome($ejercicios) {
-        // asigno variables al tpl smarty
-        $this->smarty->assign('count', count($ejercicios)); 
+    function MostrarHome($ejercicios){
         $this->smarty->assign('ejercicios', $ejercicios);
-
-        // mostrar el tpl
         $this->smarty->display('home.tpl');
     }
     

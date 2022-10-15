@@ -1,6 +1,7 @@
 <?php
 require_once './app/views/AuthView.php';
 require_once './app/models/AuthModel.php';
+require_once './app/helpers/AuthHelper.php';
 
 
 class AuthController {
@@ -16,7 +17,7 @@ class AuthController {
         $this->view->MostrarFormRegistro();
     }
 
-    public function Verificar_Nuevo_Usuario(){
+    public function verificarNuevoUsuario(){
         if(!empty($_POST['username']) && !empty($_POST['password'])){
         $username = $_POST['username'];
         $password = $_POST['password'];
@@ -38,7 +39,7 @@ class AuthController {
         $this->view->MostrarInicio();
     }
 
-    public function Validar_Usuario() {
+    public function validarUsuario() {
         $username = $_POST['username'];
         $password = $_POST['password'];
 
@@ -47,20 +48,23 @@ class AuthController {
         if ($user && password_verify($password, $user->password)) {
 
             session_start();
-            $_SESSION['USER_ID'] = $user->id;
-            $_SESSION['USER_USERNAME'] = $user->username;
-            $_SESSION['IS_LOGGED'] = true;
+            $_SESSION['user'] = $user->id_usuario;
+            $_SESSION['username'] = $user->nombre_usuario;
+            $_SESSION['is_logged'] = true;
 
             header("Location: " . BASE_URL);
+            die();
         } else {
            $this->view->MostrarInicio("El usuario o la contraseña no existe.");
         }
     }
 
     public function logout() {
-        session_start();
+        if(session_status() != PHP_SESSION_ACTIVE){
+            session_start();};
         session_destroy();
         header("Location: " . BASE_URL);
+        die();
     }
 
 }
