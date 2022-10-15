@@ -6,8 +6,10 @@
           <h3>{$musculo->division_musculo}</h3>
           </div>
           <div class="botones">
-            <button>Editar</button>
-            <button>Eliminar</button>
+          {if isset($smarty.session.username) && $smarty.session.rol=="admin"}
+            <a href="musculos/{$musculo->id}/editar">Editar</a>
+            <a href="musculos/{$musculo->id}/eliminar">Eliminar</a>
+             {/if}
             </div>
         </div>
       </div>

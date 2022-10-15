@@ -5,7 +5,7 @@ define('LOGOUT', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] 
 define('EJERCICIOS', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/ejercicios');
 define('MUSCULOS', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/musculos');
 
-require_once './app/controllers/HomeController.php';
+
 require_once './app/controllers/EjerciciosController.php';
 require_once './app/controllers/MusculoController.php';
 require_once './app/controllers/AuthController.php';
@@ -17,14 +17,13 @@ if (!empty($_GET['action'])) {
 
 $params = explode('/', $action);
 
-$HomeController = new HomeController();
 $EjerciciosController = new EjerciciosController();
 $MusculosController = new MusculoController();
 $AuthController = new AuthController();
 
 switch ($params[0]) {
     case 'home':
-        $HomeController->mostrar();
+        $EjerciciosController->mostrarRandom();
         break;
     case 'registrarse':
         $AuthController->mostrarFormRegistro();

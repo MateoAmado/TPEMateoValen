@@ -9,8 +9,13 @@
           <div class="formmusculo">
         <label for="nombre_musculo">Nombre del Musculo:</label>
         <select name="nombre_musculo">
+        {if isset($ejercicio->musculo_id)}
+          <option selected value="{$ejercicio->musculo_id}">{$ejercicio->nombre_musculo}</option>
+        {/if}
         {foreach $musculos as $musculo}
-            <option value="{$musculo->id}">{$musculo->nombre_musculo}</option>
+          {if ($musculo->id != $ejercicio->musculo_id)}
+               <option value="{$musculo->id}">{$musculo->nombre_musculo}</option>
+          {/if}
         {{/foreach}}
         </select>
           </div>

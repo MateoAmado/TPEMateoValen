@@ -1,5 +1,5 @@
 {include 'header.tpl'};
-<div class="form">
+<div class="formularioejercicio">
     <form action="ejercicios/agregar/confirmar" method="POST">
           <div class="formnombre">
           <h2>Agregar ejercicio</h2>
@@ -16,12 +16,16 @@
           </div>
           <div class="formintensidad">
         <label for="Intensidad">Intensidad:</label>
-          <p>Baja</p>
-          <input type="radio" name="Intensidad" value="1">
-          <p>Meida</p>
-          <input type="radio" name="Intensidad" value="2">
-          <p>Alta</p>
-          <input type="radio" name="Intensidad" value="3">
+        {for $i=1 to 3}
+          {if ($i == 1)}
+            <label for="Intensidad">Baja</label>
+            {elseif ($i == 2)}
+              <label for="Intensidad">Media</label>
+              {else}
+                <label for="Intensidad">Alta</label>
+          {/if}
+          <input type="radio" name="Intensidad" value="{$i}">
+        {/for}
           </div>
           <div class="formseccion">
             <label for="seccion">Seccion del Ejercicio:</label>

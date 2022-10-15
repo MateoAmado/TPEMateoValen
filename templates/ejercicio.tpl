@@ -16,8 +16,10 @@
             </div>
             <p>{$ejercicio->descripcion_ej}</p>
             <div class="botones">
-            <a href="ejercicios/{$ejercicio->id_ejer}/editar">Editar</button>
-            <a href="ejercicios/{$ejercicio->id_ejer}/eliminar">Eliminar</button>
+            {if isset($smarty.session.username) && $smarty.session.rol=="admin"}
+                <a href="ejercicios/{$ejercicio->id_ejer}/editar">Editar</a>
+                <a href="ejercicios/{$ejercicio->id_ejer}/eliminar">Eliminar</a>
+                 {/if}
             </div>
         </div>
     </div>

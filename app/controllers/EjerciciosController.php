@@ -2,23 +2,32 @@
 require_once './app/views/EjerciciosView.php';
 require_once './app/models/EjerciciosModel.php';
 require_once './app/helpers/AuthHelper.php';
+require_once './app/models/MusculoModel.php';
 
 
 class EjerciciosController {
     private $model;
     private $view;
+    private $authHelper;
+    private $modelmusculos;
 
     public function __construct() {
         $this->model = new EjerciciosModel();
         $this->view = new EjerciciosView();
-        
-        $authHelper = new AuthHelper();
-        $authHelper->checkLoggedIn();
+          
+        $this->modelmusculos = new MusculoModel();
+        $this->authHelper = new AuthHelper();
+        $this->authHelper->checkLoggedIn();
+    }
+
+    public function mostrarRandom(){
+        $ejercicios = $this->model->obtenerEjerciciosRandom();
+        $this->view->mostrarHome($ejercicios);
     }
 
     public function mostrarEjercicios() {
         $ejercicios = $this->model->obtenerEjercicios();
-        $musculos = $this->model->obtenermusculos();
+        $musculos = $this->modelmusculos->obtenerMusculos();
         $this->view->mostrarViewEjercicios($ejercicios, $musculos);
     }
 
@@ -33,10 +42,10 @@ class EjerciciosController {
     }
 
     public function editarEjercicio($id){
-        if($_SESSION['rol']=="admin"){
+        if($this->authHelper->checkAdmin()){
         $ejercicio = $this->model->obtenerEjercicio($id);
         if (!empty($ejercicio)){
-            $musculos = $this->model->obtenermusculos();
+            $musculos = $this->modelmusculos->obtenerMusculos();
             $this->view->editarFormulario($ejercicio, $musculos);
             }
             else {
@@ -48,7 +57,7 @@ class EjerciciosController {
     }
 
     public function confirmarEdicion($id){
-        if($_SESSION['rol']=="admin"){
+        if($this->authHelper->checkAdmin()){
         if (isset($_POST['nombre_ejercicio']) && !empty($_POST['nombre_ejercicio']) &&
             isset($_POST['nombre_musculo']) && !empty($_POST['nombre_musculo']) &&
             isset($_POST['Intensidad']) && !empty($_POST['Intensidad']) &&
@@ -75,7 +84,7 @@ class EjerciciosController {
     }
 
     public function eliminarEjercicio($id){
-        if($_SESSION['rol']=="admin"){
+        if($this->authHelper->checkAdmin()){
         $ejercicio = $this->model->obtenerEjercicio($id);
         if (!empty($ejercicio)){
             $this->view->eliminarEjercicioView($ejercicio);
@@ -89,7 +98,7 @@ class EjerciciosController {
     }
 
     public function confirmarEliminar($id){
-        if($_SESSION['rol']=="admin"){
+        if($this->authHelper->checkAdmin()){
         $ejercicio = $this->model->obtenerEjercicio($id);
         if (!empty($ejercicio)){
         $this->model->borrarEjercicio($id);
@@ -104,8 +113,8 @@ class EjerciciosController {
     }
 
     public function obtenerEjercicioNuevo(){
-        if($_SESSION['rol']=="admin"){
-       $musculos = $this->model->obtenermusculos();
+        if($this->authHelper->checkAdmin()){
+       $musculos = $this->modelmusculos->obtenerMusculos();
         $this->view->ejercicioNuevoForm($musculos);
         }
         else{
@@ -114,7 +123,7 @@ class EjerciciosController {
     }
 
     public function confirmarAgregar(){
-        if($_SESSION['rol']=="admin"){
+        if($this->authHelper->checkAdmin()){
          if (isset($_POST['nombre_ejercicio']) && !empty($_POST['nombre_ejercicio']) &&
             isset($_POST['nombre_musculo']) && !empty($_POST['nombre_musculo']) &&
             isset($_POST['Intensidad']) && !empty($_POST['Intensidad']) &&
@@ -142,7 +151,7 @@ class EjerciciosController {
     public function mostrarFiltro(){
         $musculo = $_POST['nombre_musculo'];
         $musculo = (int) $musculo;
-        $musculos = $this->model->obtenermusculos();
+        $musculos = $this->modelmusculos->obtenerMusculos();
         $ejercicios = $this->model->filtrarEjercicios($musculo);
         $this->view->mostrarViewEjercicios($ejercicios, $musculos, $musculo);
     }

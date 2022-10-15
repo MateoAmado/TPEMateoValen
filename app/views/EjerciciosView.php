@@ -9,8 +9,7 @@ class EjerciciosView {
     }
 
     function mostrarViewEjercicios($ejercicios, $musculos, $id_elegido = null){
-        //$this->smarty->assign('count', count($ejercicios));
-         $this->smarty->assign('musculos', $musculos);
+        $this->smarty->assign('musculos', $musculos);
         $this->smarty->assign('ejercicios', $ejercicios);
         $this->smarty->assign('elegido', $id_elegido);
         $this->smarty->display('tablaejercicios.tpl');
@@ -38,5 +37,9 @@ class EjerciciosView {
         $this->smarty->assign('texto', $texto);
         $this->smarty->display('confirmar.tpl');
      }
+     function mostrarHome($ejercicios){
+        $this->smarty->assign('ejercicios', $ejercicios);
+        $this->smarty->display('home.tpl');
+    }
 
 }

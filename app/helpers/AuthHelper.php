@@ -6,14 +6,13 @@ class AuthHelper {
             session_start();
           };
     }
-
-    //TODO: Preguntar porque no funca >:(
-    /* function checkAdmin(){
+    
+     function checkAdmin(){
         if($_SESSION['rol']=="admin"){
             return true;
         }
         else{
             return false;
         }
-    } */
+    } 
 }
