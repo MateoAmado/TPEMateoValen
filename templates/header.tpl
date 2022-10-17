@@ -19,8 +19,8 @@
             <a href="deslogearse" class="w3-bar-item w3-button w3-padding-large w3-hide-small">DESLOGEARSE</a>
               {else}
                 <a href="logearse" class="w3-bar-item w3-button w3-padding-large w3-hide-small">INICIAR SESION</a>
+                <a href="registrarse" class="w3-bar-item w3-button w3-padding-large w3-hide-small">REGISTRARSE</a>
           {/if}
-          <a href="registrarse" class="w3-bar-item w3-button w3-padding-large w3-hide-small">REGISTRARSE</a>
           <div class="w3-dropdown-hover w3-hide-small">
             <button class="w3-padding-large w3-button" title="More">LISTADO DE: <i class="fa fa-caret-down"></i></button>
             {if isset($smarty.session.username) && isset($smarty.session.rol)}
