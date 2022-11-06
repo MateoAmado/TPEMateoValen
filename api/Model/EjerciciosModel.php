@@ -42,6 +42,7 @@ class EjerciciosModel{
         $sentencia = $this->db->prepare('INSERT INTO ejercicios(id_ejer, nombre_ej, musculo_id, intensidad_ej, seccion_ej, descripcion_ej) VALUES(?,?,?,?,?,?)');
         $sentencia->execute([$this->db->lastInsertId(), $nombre_ej, $musculo_id, $intensidad, $seccion, $descripcion]);
         
+        return $this->db->lastInsertId();
     }
    
     public function filtrarEjercicios($musculo){
