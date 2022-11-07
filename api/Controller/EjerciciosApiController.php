@@ -20,15 +20,48 @@
       return json_decode($this->data);
     }
     
+
     public function obtenerEjercicios(){
         $ejercicios = $this->model->obtenerEjercicios();
         return $this->view->response($ejercicios , 200);
     }
 
-    public function obtenerEjercicio($params){
+    public function filtrarPorMusculo($params = null){
+      switch ($params[":FILTRO"]){
+        case "pecho":
+          $ejerciciosPecho = $this->model->filtrarEjercicios(1);
+          return $this->view->response($ejerciciosPecho,200);
+        break;
+        case "espalda":
+          $ejerciciosEspalda = $this->model->filtrarEjercicios(2);
+          return $this->view->response($ejerciciosEspalda,200);
+        break;
+        case "piernas":
+          $ejerciciosPierna = $this->model->filtrarEjercicios(3);
+          return $this->view->response($ejerciciosPierna,200);
+        break;
+        case "biceps":
+          $ejerciciosBicep = $this->model->filtrarEjercicios(4);
+          return $this->view->response($ejerciciosBicep,200);
+        break;
+        case "triceps":
+          $ejerciciosTricep = $this->model->filtrarEjercicios(5);
+          return $this->view->response($ejerciciosTricep,200);
+        break;
+        case "hombros":
+          $ejerciciosHombros = $this->model->filtrarEjercicios(6);
+          return $this->view->response($ejerciciosHombros,200);
+        break;
+      default: 
+       return $this->view->response("Not Found", 404);
+      }
+     
+    }
+
+    public function obtenerEjercicio($params = null){
       $ejercicio = $this->model->obtenerEjercicio($params[":ID"]);
       if(!empty($ejercicio)) {
-        return $this->view->response($ejercicio,200);
+        $ejercicio = $this->model->obtenerEjercicio($params[":ID"]);
       }
       else{
         return $this->view->response("Not found",404);
@@ -50,7 +83,7 @@
       //$this->model->agregarEjercicio();
     }
 
-    public function editarEjercicio($params){
+    public function editarEjercicio($params = null){
       $id = $params[':ID'];
       $data = $this->getData();
       
