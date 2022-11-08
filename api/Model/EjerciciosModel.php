@@ -45,7 +45,15 @@ class EjerciciosModel{
         return $this->db->lastInsertId();
     }
    
-    public function filtrarEjercicios($musculo){
+    public function filtrarEjerciciosorden($musculo, $orden=null){
+        $sentencia = $this->db->prepare('SELECT id_ejer, nombre_ej, musculo_id, intensidad_ej, seccion_ej, descripcion_ej, nombre_musculo FROM ejercicios as e, musculos as m WHERE musculo_id=? AND m.id = e.musculo_id ORDER BY nombre_ej '.$orden.'');
+        $sentencia->execute([$musculo]);
+
+        $ejercicios = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        return $ejercicios;
+    }
+
+    public function filtrarEjercicios($musculo, $orden=null){
         $sentencia = $this->db->prepare('SELECT id_ejer, nombre_ej, musculo_id, intensidad_ej, seccion_ej, descripcion_ej, nombre_musculo FROM ejercicios as e, musculos as m WHERE musculo_id=? AND m.id = e.musculo_id');
         $sentencia->execute([$musculo]);
 
@@ -59,6 +67,13 @@ class EjerciciosModel{
 
         $ejercicios = $sentencia->fetchAll(PDO::FETCH_OBJ);
         
+        return $ejercicios;
+     }
+     public function obtenertantosEjercicios($primernum, $segundonum){
+        $sentencia = $this->db->prepare('SELECT ejercicios.*, musculos.nombre_musculo FROM ejercicios JOIN musculos ON ejercicios.musculo_id = musculos.id WHERE id_ejer BETWEEN '.$primernum.' AND '.$segundonum.'');
+        $sentencia->execute();
+       
+        $ejercicios = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return $ejercicios;
      }
 }
