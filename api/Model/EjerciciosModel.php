@@ -45,9 +45,9 @@ class EjerciciosModel{
         return $this->db->lastInsertId();
     }
    
-    public function filtrarEjerciciosorden($musculo, $orden=null){
-        $sentencia = $this->db->prepare('SELECT id_ejer, nombre_ej, musculo_id, intensidad_ej, seccion_ej, descripcion_ej, nombre_musculo FROM ejercicios as e, musculos as m WHERE musculo_id=? AND m.id = e.musculo_id ORDER BY nombre_ej '.$orden.'');
-        $sentencia->execute([$musculo]);
+    public function ordenarEjercicios($columna, $orden=null){
+        $sentencia = $this->db->prepare('SELECT  ejercicios.*, musculos.nombre_musculo FROM ejercicios JOIN musculos ON ejercicios.musculo_id = musculos.id ORDER BY '.$columna.' '.$orden.'');
+        $sentencia->execute([]);
 
         $ejercicios = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return $ejercicios;
@@ -76,5 +76,14 @@ class EjerciciosModel{
         $ejercicios = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return $ejercicios;
      }
+     /* public function filtrarPorCampos($nombre, $musculo, $intensidad, $seccion){
+        $sentencia = $this->db->prepare('SELECT ejercicios.*, musculos.nombre_musculo 
+                                        FROM ejercicios ej JOIN musculos ON ejercicios.musculo_id = musculos.id 
+                                        WHERE ej.nombre_ej = (!null($nombre) or ej.nombre_ejercicio = $nombre)');
+        $sentencia->execute();
+       
+        $ejercicios = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        return $ejercicios;
+     }
+} */
 }
-

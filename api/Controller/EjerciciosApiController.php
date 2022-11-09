@@ -39,38 +39,62 @@
         }
     }
   }
+  // TODO:preguntar sober esto  ==> /ejercicios/filtro/aaa?musculo=triceps&intensidad=iiii&seccion=aaa 
+  /*       if(isset($_GET['nombre'])){
+        $nombre = $_GET['nombre'];
+      }
+      else {
+        $nombre = null;
+      }
+      if(isset($_GET['musculo'])){
+        $musculo = $_GET['musculo'];
+      }
+      else {
+        $musculo = null;
+      }
+      if(isset($_GET['intensidad'])){
+        $intensidad = $_GET['intensidad'];
+      }
+      else {
+        $intensidad = null;
+      }
+      if(isset($_GET['seccion'])){
+        $seccion = $_GET['seccion'];
+      }
+      else {
+        $seccion = null;
+      }
+       */
 
-    public function filtrarPorMusculo($params = null){
+    public function filtrarPorMusculo($params = null){  
+
       if(isset($_GET['order'])){
         $orden = $_GET['order'];
 
       switch ($params[":FILTRO"]){
-        case "pecho":
-          $ejerciciosPecho = $this->model->filtrarEjerciciosorden(1, $orden);
-          return $this->view->response($ejerciciosPecho,200);
+        case "nombre":
+          $ejercicios = $this->model->ordenarEjercicios("ejercicios.nombre_ej", $orden);
+          return $this->view->response($ejercicios,200);
         break;
-        case "espalda":
-          $ejerciciosEspalda = $this->model->filtrarEjerciciosorden(2, $orden);
-          return $this->view->response($ejerciciosEspalda,200);
+        case "musculo":
+          $ejercicios = $this->model->ordenarEjercicios("musculos.nombre_musculo", $orden);
+          return $this->view->response($ejercicios,200);
         break;
-        case "piernas":
-          $ejerciciosPierna = $this->model->filtrarEjerciciosorden(3, $orden);
-          return $this->view->response($ejerciciosPierna,200);
+        case "intensidad":
+          $ejercicios = $this->model->ordenarEjercicios("ejercicios.intensidad_ej", $orden);
+          return $this->view->response($ejercicios,200);
         break;
-        case "biceps":
-          $ejerciciosBicep = $this->model->filtrarEjerciciosorden(4, $orden);
-          return $this->view->response($ejerciciosBicep,200);
+        case "seccion":
+          $ejercicios = $this->model->ordenarEjercicios("ejercicios.seccion_ej", $orden);
+          return $this->view->response($ejercicios,200);
         break;
-        case "triceps":
-          $ejerciciosTricep = $this->model->filtrarEjerciciosorden(5, $orden);
-          return $this->view->response($ejerciciosTricep,200);
-        break;
-        case "hombros":
-          $ejerciciosHombros = $this->model->filtrarEjerciciosorden(6, $orden);
-          return $this->view->response($ejerciciosHombros,200);
+        case "descripcion":
+          $ejercicios = $this->model->ordenarEjercicios("ejercicios.descripcion_ej", $orden);
+          return $this->view->response($ejercicios,200);
         break;
       default: 
        return $this->view->response("Not Found", 404);
+       break;
       }
     }
     else{
