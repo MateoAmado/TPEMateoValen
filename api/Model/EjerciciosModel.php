@@ -46,8 +46,8 @@ class EjerciciosModel{
     }
    
     public function ordenarEjercicios($columna, $orden=null){
-        $sentencia = $this->db->prepare('SELECT  ejercicios.*, musculos.nombre_musculo FROM ejercicios JOIN musculos ON ejercicios.musculo_id = musculos.id ORDER BY ? ?');
-        $sentencia->execute([$columna, $orden]);
+        $sentencia = $this->db->prepare('SELECT  ejercicios.*, musculos.nombre_musculo FROM ejercicios JOIN musculos ON ejercicios.musculo_id = musculos.id ORDER BY '.$columna.' '.$orden.'');
+        $sentencia->execute();
 
         $ejercicios = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return $ejercicios;

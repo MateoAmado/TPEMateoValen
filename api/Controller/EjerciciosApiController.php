@@ -123,6 +123,7 @@
 
     public function obtenerEjercicio($params = null){
       $ejercicio = $this->model->obtenerEjercicio($params[":ID"]);
+      if (is_numeric($params[":ID"])){
       if(!empty($ejercicio)) {
         $ejercicio = $this->model->obtenerEjercicio($params[":ID"]);
       }
@@ -130,10 +131,14 @@
         return $this->view->response("Not found",404);
       }
     }
+    else{
+      return $this->view->response("Bad Request",400);
+    }
+    }
 
     public function anadirEjercicio(){
       $data = $this->getData();
-
+      // TODO: hacer que lea en caso de arreglo
       $id = $this->model->agregarEjercicio($data->nombre_ej, $data->musculo_id, $data->intensidad_ej, $data->seccion_ej, $data->descripcion_ej);
       
       $nuevoejercicio = $this->model->obtenerEjercicio($id);

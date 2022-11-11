@@ -1,5 +1,6 @@
 <?php
 
+// TODO: chequear datos por la inyeccion SQL
 require_once "libs/Router.php";
 require_once "api/Controller/EjerciciosApiController.php";
 
