@@ -39,7 +39,27 @@
         }
     }
   }
-  // TODO:preguntar sober esto  ==> /ejercicios/filtro/aaa?musculo=triceps&intensidad=iiii&seccion=aaa 
+
+   public function filtrarporcampo($params = null){
+     // endpoint api/ejercicios/filtro/:CAMPO?=filtro like y porcentajes
+            $campo = $params[':CAMPO'];
+            if(!empty($campo)){
+               $filtro = $_GET['filtro'];
+               if(!empty($filtro)){
+                   $filtro = "$filtro%" ;
+                   $ejercicios = $this->model->filtrarEjercicios($filtro);
+                   return $this->view->response($ejercicios, 200);
+                   //return $this->view->response($filtro ,200);
+               }
+               else{
+                   return $this->view->response("Bad Request", 400);
+               }
+            }else{
+
+            }
+
+   }
+  // TODO:preguntar sober esto  ==> /ejercicios/filtro/aaa?musculo=triceps&intensidad=iiii&seccion=aaa :D
   /*       if(isset($_GET['nombre'])){
         $nombre = $_GET['nombre'];
       }
@@ -66,12 +86,11 @@
       }
        */
 
-    public function filtrarPorMusculo($params = null){  
-
+    public function ordenarPorCampo($params = null){  
       if(isset($_GET['order'])){
         $orden = $_GET['order'];
 
-      switch ($params[":FILTRO"]){
+      switch ($params[":CAMPO"]){
         case "nombre":
           $ejercicios = $this->model->ordenarEjercicios("ejercicios.nombre_ej", $orden);
           return $this->view->response($ejercicios,200);
@@ -96,37 +115,10 @@
        return $this->view->response("Not Found", 404);
        break;
       }
-    }
-    else{
-    switch ($params[":FILTRO"]){
-      case "pecho":
-        $ejerciciosPecho = $this->model->filtrarEjercicios(1);
-        return $this->view->response($ejerciciosPecho,200);
-      break;
-      case "espalda":
-        $ejerciciosEspalda = $this->model->filtrarEjercicios(2);
-        return $this->view->response($ejerciciosEspalda,200);
-      break;
-      case "piernas":
-        $ejerciciosPierna = $this->model->filtrarEjercicios(3);
-        return $this->view->response($ejerciciosPierna,200);
-      break;
-      case "biceps":
-        $ejerciciosBicep = $this->model->filtrarEjercicios(4);
-        return $this->view->response($ejerciciosBicep,200);
-      break;
-      case "triceps":
-        $ejerciciosTricep = $this->model->filtrarEjercicios(5);
-        return $this->view->response($ejerciciosTricep,200);
-      break;
-      case "hombros":
-        $ejerciciosHombros = $this->model->filtrarEjercicios(6);
-        return $this->view->response($ejerciciosHombros,200);
-      break;
-    default: 
-     return $this->view->response("Not Found", 404);
-    }
-  }
+     }
+     else{
+          return $this->view->response("Not Found", 404);
+     }
     }
 
     public function obtenerEjercicio($params = null){

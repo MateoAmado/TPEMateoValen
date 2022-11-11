@@ -10,7 +10,8 @@ $router = new Router();
 
 // define la tabla de ruteo
 $router->addRoute('ejercicios', 'GET', 'EjerciciosApiController', 'obtenerEjercicios');
-$router->addRoute('ejercicios/filtro/:FILTRO', 'GET', 'EjerciciosApiController', 'filtrarPorMusculo');
+$router->addRoute('ejercicios/ordenar/:CAMPO', 'GET', 'EjerciciosApiController', 'ordenarPorCampo');
+$router->addRoute('ejercicios/filtro/:CAMPO', 'GET', 'EjerciciosApiController', 'filtrarporcampo');
 $router->addRoute('ejercicios/', 'POST', 'EjerciciosApiController', 'anadirEjercicio');
 $router->addRoute('ejercicios/:ID', 'GET', 'EjerciciosApiController', 'obtenerEjercicio');
 $router->addRoute('ejercicios/:ID', 'PUT', 'EjerciciosApiController', 'editarEjercicio');
