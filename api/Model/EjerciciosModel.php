@@ -53,9 +53,9 @@ class EjerciciosModel{
         return $ejercicios;
     }
 
-    public function filtrarEjercicios($musculo){
+    public function filtrarEjercicios($filtro){
         $sentencia = $this->db->prepare('SELECT ejercicios.*, musculos.nombre_musculo FROM ejercicios JOIN musculos ON ejercicios.musculo_id = musculos.id WHERE musculos.nombre_musculo LIKE ?');
-        $sentencia->execute([$musculo]);
+        $sentencia->execute([$filtro]);
 
         $ejercicios = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return $ejercicios;
@@ -76,14 +76,15 @@ class EjerciciosModel{
         $ejercicios = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return $ejercicios;
      }
-     /* public function filtrarPorCampos($nombre, $musculo, $intensidad, $seccion){
-        $sentencia = $this->db->prepare('SELECT ejercicios.*, musculos.nombre_musculo 
-                                        FROM ejercicios ej JOIN musculos ON ejercicios.musculo_id = musculos.id 
-                                        WHERE ej.nombre_ej = (!null($nombre) or ej.nombre_ejercicio = $nombre)');
+      public function filtrarPorCampos($nombre, $musculo, $intensidad, $seccion){
+        $sentencia = $this->db->prepare('SELECT ejercicios.*, musculos.nombre_musculo FROM ejercicios JOIN musculos ON ejercicios.musculo_id = musculos.id WHERE ejercicios.nombre_ej LIKE "'.$nombre.'"   AND ejercicios.intensidad_ej LIKE "'.$intensidad.'" AND musculos.nombre_musculo LIKE "'.$musculo.'"AND ejercicios.seccion_ej LIKE "'.$seccion.'"');
         $sentencia->execute();
        
         $ejercicios = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return $ejercicios;
      }
-} */
-}
+} 
+
+/* SELECT ejercicios.*, musculos.nombre_musculo 
+                                        FROM ejercicios JOIN musculos ON ejercicios.musculo_id = musculos.id 
+                                        WHERE ejercicios.nombre_ej LIKE '.$nombre.' AND musculos.nombre_musculo LIKE '.$musculo.' AND ejercicios.intensidad_ej LIKE '.$intensidad.' AND ejercicios.seccion_ej_ej LIKE '.$seccion.' ' */
