@@ -33,7 +33,7 @@ class EjerciciosModel{
     }
 
     public function borrarEjercicio($id){
-        $sentencia = $this->db->prepare('DELETE FROM `ejercicios` WHERE id_ejer=?');
+        $sentencia = $this->db->prepare('DELETE FROM ejercicios WHERE id_ejer = ?');
         $sentencia->execute([$id]);
 
     }

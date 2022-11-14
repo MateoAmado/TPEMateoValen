@@ -1,6 +1,6 @@
 <?php
- // TODO: hacer response en arreglos anteriormente 
  // TODO: añadir en documentacion el paso de parametros
+ // TODO: HACER FUNCION DELETE.
   require_once "./api/Model/EjerciciosModel.php";
   require_once "./api/View/APIView.php";
 
@@ -19,23 +19,46 @@
     public function getData(){
       return json_decode($this->data);
     }
-    
+
+    public function eliminarEjercicio($params = null){
+          if(isset($params[':ID']) && is_numeric($params[':ID'])){
+            $id = $params[':ID'];
+            $ejercicio = $this->model->obtenerEjercicio($id);
+            if($ejercicio){
+              $this->model->borrarEjercicio($id);
+              return $this->view->response("Se elimino el ejercicio numero ".$id.".", 200);
+            }
+            else{
+              return $this->view->response("Not found", 404);
+            }
+          }
+          else{
+               return $this->view->response("Bad Request", 400);
+          }
+    }
 
     public function obtenerEjercicios($params = null){
-
       if (empty($params)){
         $ejercicios = $this->model->obtenerEjercicios();
         return $this->view->response($ejercicios , 200);
       }
       else{
-        
+        if(isset($params[':ID']) && is_numeric($params[":ID"])){
+        $ejercicio = $this->model->obtenerEjercicio($params[":ID"]);
+        if(!empty($ejercicio)) {
+        return $this->view->response($ejercicio, 200);
       }
-
+      else{
+        return $this->view->response("Not found",404);
+      }
+     }
+     else{
+        return $this->view->response("Bad Request", 400);
+     }
     }
+  }
 
     public function paginarEjercicios($params = null){
-      
-      if(isset($params[':PAGINACION'])){
         if(isset($_GET['primernum']) && isset($_GET['segundonum']) && (is_numeric($_GET['segundonum']) && is_numeric($_GET['primernum']))){
           $primernum = $_GET['primernum'];
           $segundonum = $_GET['segundonum'];
@@ -49,28 +72,7 @@
         else{
           $this->view->response("Bad request", 400);
         }
-    }
   }
-
-   public function filtrarporcampo($params = null){
-     // endpoint api/ejercicios/filtro/:CAMPO?CAMPO=filtro like y porcentajes
-            $campo = $params[':CAMPO'];
-            if(!empty($campo)){
-               $filtro = $_GET['filtro'];
-               if(!empty($filtro)){
-                   $filtro = "$filtro%" ;
-                   $ejercicios = $this->model->filtrarEjercicios($filtro);
-                   return $this->view->response($ejercicios, 200);
-                   //return $this->view->response($filtro ,200);
-               }
-               else{
-                   return $this->view->response("Bad Request", 400);
-               }
-            }else{
-              return $this->view->response("Bad Request", 400);
-            }
-
-   }
    public function filtrarporcampos($params = null){
   // TODO:preguntar sober esto  ==> /ejercicios/filtro/aaa?musculo=triceps&intensidad=iiii&seccion=aaa :D
          if(isset($_GET['nombre'])){
@@ -101,10 +103,12 @@
       else {
         $seccion = "%";
       }
-      $campo = $params[':CAMPO'];
-            if(!empty($campo)){
-                   $ejercicios = $this->model-> filtrarPorCampos($nombre, $musculo, $intensidad, $seccion);
-                   return $this->view->response($ejercicios, 200);
+    if(!empty($nombre) || !empty($musculo) || !empty($intensidad) || !empty($seccion)){
+              $ejercicios = $this->model-> filtrarPorCampos($nombre, $musculo, $intensidad, $seccion);
+              return $this->view->response($ejercicios, 200);
+            }
+            else{
+              return $this->view->response("adsadd", 400);
             }
     }
 
@@ -149,22 +153,6 @@
      }
     }
 
-    public function obtenerEjercicio($params = null){
-
-      $ejercicio = $this->model->obtenerEjercicio($params[":ID"]);
-      if (is_numeric($params[":ID"])){
-      if(!empty($ejercicio)) {
-        $ejercicio = $this->model->obtenerEjercicio($params[":ID"]);
-      }
-      else{
-        return $this->view->response("Not found",404);
-      }
-    }
-    else{
-      return $this->view->response("Bad Request",400);
-    }
-    }
-
     // TODO: preguntar de saltos de linea
     public function anadirEjercicio(){
       
@@ -194,7 +182,6 @@
       }
       else{
       $id = $this->model->agregarEjercicio($data->nombre_ej, $data->musculo_id, $data->intensidad_ej, $data->seccion_ej, $data->descripcion_ej);
-      
       $nuevoejercicio = $this->model->obtenerEjercicio($id);
       if ($nuevoejercicio){
           $this->view->response($nuevoejercicio, 200);
