@@ -10,3 +10,5 @@ Consultas Basicas:
  (GET) api/ejercicios/filtro?campo1=(valor)&campo2=(valor)&campo3=(valor)&campo4=(valor).
  Siendo nombre, seccion, musculo, intensidad los campos posibles para iterar, el orden es indistinto y pueden o no estar todos.
 
+
+<!-- TODO: poner lo del token  -->
