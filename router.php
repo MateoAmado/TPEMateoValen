@@ -21,6 +21,5 @@ $router->addRoute('ejercicios/:ID', 'DELETE','EjerciciosApiController', 'elimina
 $router->addRoute('auth/token', 'GET', 'AuthApiController', 'getToken');
 
 
-
 // rutea
 $router->route($_GET["resource"], $_SERVER['REQUEST_METHOD']);

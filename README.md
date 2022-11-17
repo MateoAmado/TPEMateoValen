@@ -86,8 +86,9 @@ Ejemplo de url, si quisiera filtrar por todos los campos buscando ejercicios de 
 api/ejercicios/filtro?nombre=press&musculo=pecho&seccion=con mancuernas&intensidad=2
 ~~~
 
-
->9) Si se quiere conseguir un token para poder agregar, editar y eliminar ejercicios se debe llamar a estar url: (GET) api/auth/token.
-
-
+Para poder realizar las consultas de editado, agregado y eliminición de datos posteriormente debe realizarse un proceso de validacíon que consiste en:
+- 1) Conseguir el token de validacíon con la siguiente consulta:
+~~~
+api/auth/token
+~~~
 

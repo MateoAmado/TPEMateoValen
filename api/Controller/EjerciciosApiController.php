@@ -17,7 +17,6 @@ class EjerciciosApiController
     $this->AuthAPIhelper = new AuthApiHelper();
     $this->data = file_get_contents("php://input");
   }
-      
 
   public function getData()
   {
@@ -84,35 +83,46 @@ class EjerciciosApiController
     if (isset($_GET['nombre'])){
       $nombre = $_GET['nombre'];
       $nombre = preg_replace('([^A-Za-z])', '', $nombre);
-      var_dump($nombre);
-      die();
       $nombre = "$nombre%";
     } else {
       $nombre = "%";
     }
     if (isset($_GET['musculo'])) {
       $musculo = $_GET['musculo'];
+      $musculo = preg_replace('([^A-Za-z])', '', $musculo);
       $musculo = "$musculo%";
     } else {
       $musculo = "%";
     }
-    if (isset($_GET['intensidad'])) {
-      $intensidad = $_GET['intensidad'];
-      $intensidad = "$intensidad%";
-    } else {
-      $intensidad = "%";
-    }
+       if (isset($_GET['intensidad'])) {
+         if (is_numeric($_GET['intensidad'])){
+        $intensidad =  filter_var ($_GET['intensidad'], FILTER_SANITIZE_NUMBER_INT);
+        $intensidad = "$intensidad%";
+         }
+         else {
+           $intensidad = null;
+         }
+      } else {
+        $intensidad = "%";
+      }
     if (isset($_GET['seccion'])) {
       $seccion = $_GET['seccion'];
+      $seccion = preg_replace('([^A-Za-z])', '', $seccion);
       $seccion = "$seccion%";
     } else {
       $seccion = "%";
     }
-    if (!empty($nombre) || !empty($musculo) || !empty($intensidad) || !empty($seccion)) {
-      $ejercicios = $this->model->filtrarPorCampos($nombre, $musculo, $intensidad, $seccion);
-      return $this->view->response($ejercicios, 200);
-    } else {
-      return $this->view->response("adsadd", 400);
+    $ejercicios = $this->model->filtrarPorCampos($nombre, $musculo, $intensidad, $seccion);
+    if ($intensidad != null ){
+    if (!$ejercicios == []){
+    return $this->view->response($ejercicios, 200);
+    }
+    else{
+      return $this->view->response("Not found", 404);
+    }
+    }
+    else{
+      return $this->view->response("Bad Request", 400);
     }
   }
 
@@ -165,7 +175,7 @@ class EjerciciosApiController
     $data = $this->getData();
     $iteracion = 0;
     $respuesta = [];
-//TODO: REFACTORIZAR MENSAJE
+
     if (is_array($data)) { 
       //si es un arreglo por cada elemento se itera el foreach.
       foreach ($data as $JSON) {
