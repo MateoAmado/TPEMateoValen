@@ -26,7 +26,6 @@ class EjerciciosModel{
 
     public function modificarEjercicio($id, $nombre_ej, $musculo, $intensidad, $seccion, $descripcion){
         
-        
          $sentencia = $this->db->prepare("UPDATE `ejercicios` SET `nombre_ej`='$nombre_ej',`musculo_id`='$musculo',`intensidad_ej`='$intensidad',`seccion_ej`='$seccion',`descripcion_ej`='$descripcion' WHERE id_ejer=?");
          $sentencia->execute([$id]);
 
@@ -83,8 +82,12 @@ class EjerciciosModel{
         $ejercicios = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return $ejercicios;
      }
-} 
+     public function buscarUsuario($username){
+        $sentencia = $this->db->prepare("SELECT * FROM `usuarios` WHERE nombre_usuario=?");
+        $sentencia->execute([$username]);
 
-/* SELECT ejercicios.*, musculos.nombre_musculo 
-                                        FROM ejercicios JOIN musculos ON ejercicios.musculo_id = musculos.id 
-                                        WHERE ejercicios.nombre_ej LIKE '.$nombre.' AND musculos.nombre_musculo LIKE '.$musculo.' AND ejercicios.intensidad_ej LIKE '.$intensidad.' AND ejercicios.seccion_ej_ej LIKE '.$seccion.' ' */
+        $username = $sentencia->fetch(PDO::FETCH_OBJ);
+        return $username;
+  }
+}
+

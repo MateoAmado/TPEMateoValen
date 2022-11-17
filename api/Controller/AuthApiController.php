@@ -12,11 +12,10 @@ class AuthApiController {
     private $model;
     private $view;
     private $authHelper;
-
     private $data;
 
     public function __construct() {
-        //$this->model = new TaskModel();
+        $this->model = new EjerciciosModel();
         $this->view = new ApiView();
         $this->authHelper = new AuthApiHelper();
         
@@ -47,7 +46,9 @@ class AuthApiController {
         $userpass = explode(":", $userpass);
         $user = $userpass[0];
         $pass = $userpass[1];
-        if($user == "Valen" && $pass == "888"){
+        $user = $this->model->buscarUsuario($user);
+
+        if (isset($user) && $user->rol_usuario = "Admin" && password_verify($pass, $user->password)){
             //  crear un token
             $header = array(
                 'alg' => 'HS256',
