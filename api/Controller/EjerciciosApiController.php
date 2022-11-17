@@ -1,6 +1,4 @@
 <?php
-// TODO: añadir en documentacion el paso de parametros
-// TODO: HACER FUNCION DELETE.
 require_once "./api/Model/EjerciciosModel.php";
 require_once "./api/View/APIView.php";
 require_once "./api/Helper/AuthApiHelper.php";
@@ -19,6 +17,7 @@ class EjerciciosApiController
     $this->AuthAPIhelper = new AuthApiHelper();
     $this->data = file_get_contents("php://input");
   }
+      
 
   public function getData()
   {
@@ -82,10 +81,11 @@ class EjerciciosApiController
   }
   public function filtrarporcampos($params = null)
   {
-    // TODO:preguntar sober esto  ==> /ejercicios/filtro/aaa?musculo=triceps&intensidad=iiii&seccion=aaa :D
-    // TODO: validar que sean los nombres de campos reales
-    if (isset($_GET['nombre'])) {
+    if (isset($_GET['nombre'])){
       $nombre = $_GET['nombre'];
+      $nombre = preg_replace('([^A-Za-z])', '', $nombre);
+      var_dump($nombre);
+      die();
       $nombre = "$nombre%";
     } else {
       $nombre = "%";
@@ -156,35 +156,34 @@ class EjerciciosApiController
     }
   }
 
-  // TODO: preguntar de saltos de linea
   public function anadirEjercicio()
   {
-
     if (!$this->AuthAPIhelper->isLoggedIn()) {
       $this->view->response("No estas logeado", 401);
       return;
     }
-
     $data = $this->getData();
     $iteracion = 0;
-
-
-    if (is_array($data)) {
+    $respuesta = [];
+//TODO: REFACTORIZAR MENSAJE
+    if (is_array($data)) { 
+      //si es un arreglo por cada elemento se itera el foreach.
       foreach ($data as $JSON) {
         $iteracion++;
-        if (!(isset($JSON->nombre_ej) && isset($JSON->musculo_id) && isset($JSON->intensidad_ej) && isset($JSON->seccion_ej) && isset($JSON->descripcion_ej))) {
-          $this->view->response("El elemento numero: " . $iteracion . " que ha insertado no se ha podido agragar.", 400);
-        } else {
+        if (isset($JSON->nombre_ej) && isset($JSON->musculo_id) && is_numeric($JSON->musculo_id) && $JSON->musculo_id<=6 && $JSON->musculo_id>=1 && isset($JSON->intensidad_ej) && is_numeric($JSON->intensidad_ej) && $JSON->intensidad_ej>=1 && $JSON->intensidad_ej<=3 && isset($JSON->seccion_ej) && isset($JSON->descripcion_ej)) {
           $id = $this->model->agregarEjercicio($JSON->nombre_ej, $JSON->musculo_id, $JSON->intensidad_ej, $JSON->seccion_ej, $JSON->descripcion_ej);
           $nuevoejercicio = $this->model->obtenerEjercicio($id);
-          if ($nuevoejercicio) {
-            $this->view->response($nuevoejercicio, 200);
-          } else {
-            $this->view->response("El ejercicio numero:" . $JSON . " no se pudo incluir a la base de datos", 400);
-          }
-        }
+          $respuesta[$iteracion] = json_encode($nuevoejercicio);
+        } 
       }
-    } else {
+      if(count($respuesta) == count($data)){
+            $this->view->response("Los elementos se agregaron correctamente", 200);
+      }
+      else{
+        $this->view->response("Ocurrio un error al agregar los elementos(chequear datos).", 400);
+      }
+    } else //entra al else si solo se quiere agregar un ejercicio.
+     {
       $id = $this->model->agregarEjercicio($data->nombre_ej, $data->musculo_id, $data->intensidad_ej, $data->seccion_ej, $data->descripcion_ej);
       $nuevoejercicio = $this->model->obtenerEjercicio($id);
       if ($nuevoejercicio) {
@@ -208,8 +207,8 @@ class EjerciciosApiController
     if (is_array($data)) {
       $this->view->response("Bad request", 400);
     } else {
-      if (!(isset($data->nombre_ej) && isset($data->musculo_id) && isset($data->intensidad_ej) && isset($data->seccion_ej) && isset($data->descripcion_ej))) {
-        $this->view->response("Tiene al menos de un elemento que no está seteado", 400);
+      if (!(isset($data->nombre_ej) && isset($data->musculo_id) && !is_numeric($data->musculo_id) && $data->musculo_id>=6 && $data->musculo_id<=1 && isset($data->intensidad_ej) && !is_numeric($data->intensidad_ej) && $data->intensidad_ej<=1 && $data->intensidad_ej>=3 && isset($data->seccion_ej) && isset($data->descripcion_ej))) {
+        $this->view->response("Verificar Datos", 400);
       } else {
         $ejercicioaeditar = $this->model->obtenerEjercicio($id);
         if ($ejercicioaeditar) {

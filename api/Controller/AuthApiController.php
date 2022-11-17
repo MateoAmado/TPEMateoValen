@@ -47,7 +47,7 @@ class AuthApiController {
         $userpass = explode(":", $userpass);
         $user = $userpass[0];
         $pass = $userpass[1];
-        if($user == "Nico" && $pass == "web"){
+        if($user == "Valen" && $pass == "888"){
             //  crear un token
             $header = array(
                 'alg' => 'HS256',

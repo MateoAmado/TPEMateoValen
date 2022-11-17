@@ -1,7 +1,4 @@
 <?php
-
-// TODO: chequear datos por la inyeccion SQL
-// TODO: preguntar por que respon de 200 cuando o entra en ningun lado
 require_once "libs/Router.php";
 require_once "api/Controller/EjerciciosApiController.php";
 require_once "api/Controller/AuthApiController.php";
@@ -12,7 +9,7 @@ define("BASE_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"]
 $router = new Router();
 
 // define la tabla de ruteo
-// $router->setDefaultRoute('EjerciciosApiController', 'obtenerEjercicios');
+//$router->setDefaultRoute('EjerciciosApiController', 'obtenerEjercicios');
 $router->addRoute('ejercicios', 'GET', 'EjerciciosApiController', 'obtenerEjercicios');
 $router->addRoute('ejercicios/ordenar/:CAMPO', 'GET', 'EjerciciosApiController', 'ordenarPorCampo');
 $router->addRoute('ejercicios/filtro', 'GET', 'EjerciciosApiController', 'filtrarporcampos');
