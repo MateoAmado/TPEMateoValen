@@ -38,25 +38,35 @@ class MusculoModel{
         }
     }
 
+    public function filtrarPorCampos($nombre, $division){
+        $sentencia = $this->db->prepare('SELECT * FROM musculos WHERE nombre_musculo LIKE "'.$nombre.'"   AND division_musculo LIKE "'.$division.'"');
+        $sentencia->execute();
+       
+        $musculos = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        return $musculos;
+     }
+    
     public function insertarMusculo($nombre_musculo, $division_musculo){
         $sentencia = $this->db->prepare('INSERT INTO musculos(id, nombre_musculo, division_musculo) VALUES(?,?,?)');
         $sentencia->execute([$this->db->lastInsertId(), $nombre_musculo, $division_musculo]);
+
+        return $this->db->lastInsertId();
     }
 
     public function obtenertantosMusculos($primernum, $segundonum){
-        $sentencia = $this->db->prepare('SELECT * FROM musculos WHERE id_ejer BETWEEN '.$primernum.' AND '.$segundonum.'');
+        $sentencia = $this->db->prepare('SELECT * FROM musculos WHERE id BETWEEN '.$primernum.' AND '.$segundonum.'');
         $sentencia->execute();
        
-        $ejercicios = $sentencia->fetchAll(PDO::FETCH_OBJ);
-        return $ejercicios;
+        $musculos = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        return $musculos;
      }
 
      public function ordenarMusculos($columna, $orden=null){
         $sentencia = $this->db->prepare('SELECT * FROM musculos ORDER BY '.$columna.' '.$orden.'');
         $sentencia->execute();
 
-        $ejercicios = $sentencia->fetchAll(PDO::FETCH_OBJ);
-        return $ejercicios;
+        $musculos = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        return $musculos;
     }
 
 }

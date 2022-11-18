@@ -175,12 +175,15 @@ class EjerciciosApiController
     $data = $this->getData();
     $iteracion = 0;
     $respuesta = [];
+    $musculos = $this->model->obtenerMusculos();
+    $primerid = $musculos[0]->id;
+    $ultimaid = count($musculos);
 
     if (is_array($data)) { 
       //si es un arreglo por cada elemento se itera el foreach.
       foreach ($data as $JSON) {
         $iteracion++;
-        if (isset($JSON->nombre_ej) && isset($JSON->musculo_id) && is_numeric($JSON->musculo_id) && $JSON->musculo_id<=6 && $JSON->musculo_id>=1 && isset($JSON->intensidad_ej) && is_numeric($JSON->intensidad_ej) && $JSON->intensidad_ej>=1 && $JSON->intensidad_ej<=3 && isset($JSON->seccion_ej) && isset($JSON->descripcion_ej)) {
+        if (isset($JSON->nombre_ej) && isset($JSON->musculo_id) && is_numeric($JSON->musculo_id) && $JSON->musculo_id<=$ultimaid && $JSON->musculo_id>=$primerid && isset($JSON->intensidad_ej) && is_numeric($JSON->intensidad_ej) && $JSON->intensidad_ej>=1 && $JSON->intensidad_ej<=3 && isset($JSON->seccion_ej) && isset($JSON->descripcion_ej)) {
           $id = $this->model->agregarEjercicio($JSON->nombre_ej, $JSON->musculo_id, $JSON->intensidad_ej, $JSON->seccion_ej, $JSON->descripcion_ej);
           $nuevoejercicio = $this->model->obtenerEjercicio($id);
           $respuesta[$iteracion] = json_encode($nuevoejercicio);
@@ -194,6 +197,7 @@ class EjerciciosApiController
       }
     } else //entra al else si solo se quiere agregar un ejercicio.
      {
+      if (isset($data->nombre_ej) && isset($data->musculo_id) && is_numeric($data->musculo_id) && $data->musculo_id<=$ultimaid && $data->musculo_id>=$primerid && isset($data->intensidad_ej) && is_numeric($data->intensidad_ej) && $data->intensidad_ej>=1 && $data->intensidad_ej<=3 && isset($data->seccion_ej) && isset($data->descripcion_ej)){
       $id = $this->model->agregarEjercicio($data->nombre_ej, $data->musculo_id, $data->intensidad_ej, $data->seccion_ej, $data->descripcion_ej);
       $nuevoejercicio = $this->model->obtenerEjercicio($id);
       if ($nuevoejercicio) {
@@ -202,24 +206,29 @@ class EjerciciosApiController
         $this->view->response("La tarea no fue creada", 500);
       }
     }
+    else{
+      $this->view->response("Verificar", 400);
+    }
+    }
   }
 
   public function editarEjercicio($params = null)
   {
-
     $id = $params[':ID'];
     if (!$this->AuthAPIhelper->isLoggedIn()) {
       $this->view->response("No estas logeado", 401);
       return;
     }
+    
+    $musculos = $this->model->obtenerMusculos();
+    $primerid = $musculos[0]->id;
+    $ultimaid = count($musculos);
 
     $data = $this->getData();
     if (is_array($data)) {
       $this->view->response("Bad request", 400);
     } else {
-      if (!(isset($data->nombre_ej) && isset($data->musculo_id) && !is_numeric($data->musculo_id) && $data->musculo_id>=6 && $data->musculo_id<=1 && isset($data->intensidad_ej) && !is_numeric($data->intensidad_ej) && $data->intensidad_ej<=1 && $data->intensidad_ej>=3 && isset($data->seccion_ej) && isset($data->descripcion_ej))) {
-        $this->view->response("Verificar Datos", 400);
-      } else {
+      if (isset($data->nombre_ej) && isset($data->musculo_id) && is_numeric($data->musculo_id) && $data->musculo_id<=$ultimaid && $data->musculo_id>=$primerid && isset($data->intensidad_ej) && is_numeric($data->intensidad_ej) && $data->intensidad_ej>=1 && $data->intensidad_ej<=3 && isset($data->seccion_ej) && isset($data->descripcion_ej)) {
         $ejercicioaeditar = $this->model->obtenerEjercicio($id);
         if ($ejercicioaeditar) {
           $this->model->modificarEjercicio($id, $data->nombre_ej, $data->musculo_id, $data->intensidad_ej, $data->seccion_ej, $data->descripcion_ej);
@@ -228,6 +237,8 @@ class EjerciciosApiController
         } else {
           $this->view->response("El ejercicio con el id:" . $id . " no existe papa", 404);
         }
+      } else {
+        $this->view->response("Verificar Datos", 400);
       }
     }
   }

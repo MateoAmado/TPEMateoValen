@@ -89,5 +89,12 @@ class EjerciciosModel{
         $username = $sentencia->fetch(PDO::FETCH_OBJ);
         return $username;
   }
+  public function obtenerMusculos(){
+    $sentencia = $this->db->prepare("SELECT * FROM musculos");
+    $sentencia->execute();
+
+    $musculos = $sentencia->fetchAll(PDO::FETCH_OBJ);
+    return $musculos;
+}
 }
 
