@@ -20,6 +20,12 @@ $router->addRoute('ejercicios/:ID', 'PUT', 'EjerciciosApiController', 'editarEje
 $router->addRoute('ejercicios/:ID', 'DELETE','EjerciciosApiController', 'eliminarEjercicio');
 $router->addRoute('auth/token', 'GET', 'AuthApiController', 'getToken');
 
+$router->addRoute('musculos', 'GET', 'MusculosApiController', 'obtenerEjercicios');
+$router->addRoute('musculos/ordenar/:CAMPO', 'GET', 'MusculosApiController', 'ordenarPorCampo');
+$router->addRoute('musculos/filtro', 'GET', 'MusculosApiController', 'filtrarporcampos');
+$router->addRoute('musculos', 'POST', 'MusculosApiController', 'anadirEjercicio');
+$router->addRoute('musculos/paginacion', 'GET', 'MusculosApiController', 'paginarEjercicios');
+$router->addRoute('musculos/:ID', 'GET', 'MusculosApiController','obtenerEjercicios');
 
 // rutea
 $router->route($_GET["resource"], $_SERVER['REQUEST_METHOD']);
