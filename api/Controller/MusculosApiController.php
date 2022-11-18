@@ -1,5 +1,5 @@
 <?php
-require_once "./api/Model/MusculosModel.php";
+require_once "./api/Model/MusculoModel.php";
 require_once "./api/View/APIView.php";
 require_once "./api/Helper/AuthApiHelper.php";
 
@@ -33,8 +33,8 @@ class MusculosApiController
         return;
       }
       $musculo = $this->model->obtenerMusculo($id);
-      if ($musculo) {
-        $this->model->borrarMusculo($id);
+
+      if ($musculo){
         return $this->view->response("Se elimino el musculo numero " . $id . ".", 200);
       } else {
         return $this->view->response("Not found", 404);
@@ -44,15 +44,15 @@ class MusculosApiController
     }
   }
 
-  public function obtenerMusculos($params = null)
+   public function obtenerMusculos($params = null)
   {
     if (empty($params)) {
       $musculos = $this->model->obtenerMusculos();
       return $this->view->response($musculos, 200);
     } else {
       if (isset($params[':ID']) && is_numeric($params[":ID"])) {
-        $musculo = $this->model->obtenerEjercicio($params[":ID"]);
-        if (!empty($ejercicio)) {
+        $musculo = $this->model->obtenerMusculo($params[":ID"]);
+        if (!empty($musculo)) {
           return $this->view->response($musculo, 200);
         } else {
           return $this->view->response("Not found", 404);
@@ -63,12 +63,12 @@ class MusculosApiController
     }
   }
 
-  public function paginarEjercicios($params = null)
+  /* public function paginarEjercicios($params = null)
   {
     if (isset($_GET['primernum']) && isset($_GET['segundonum']) && (is_numeric($_GET['segundonum']) && is_numeric($_GET['primernum']))) {
       $primernum = $_GET['primernum'];
       $segundonum = $_GET['segundonum'];
-      $musculos = $this->model->obtenertantosEjercicios($primernum, $segundonum);
+      $musculos = $this->model->obtenertantosMusculos($primernum, $segundonum);
       if ($musculos == []) {
         return $this->view->response("Not found", 404);
       } else {
@@ -77,8 +77,8 @@ class MusculosApiController
     } else {
       $this->view->response("Bad request", 400);
     }
-  }
-  public function filtrarporcampos($params = null)
+  }  */
+  /* public function filtrarporcampos($params = null)
   {
     if (isset($_GET['nombre'])){
       $nombre = $_GET['nombre'];
@@ -124,9 +124,9 @@ class MusculosApiController
     else{
       return $this->view->response("Bad Request", 400);
     }
-  }
+  } */
 
-  public function ordenarPorCampo($params = null)
+   public function ordenarPorCampo($params = null)
   {
     if (isset($_GET['order']) && !(is_numeric($_GET['order']))) {
       $orden = $_GET['order'];
@@ -137,16 +137,16 @@ class MusculosApiController
       }
 
       switch ($params[":CAMPO"]) {
+        case "id":
+          $musculos = $this->model->ordenarMusculos("musculos.id", $orden);
+          return $this->view->response($musculos, 200);
+          break;
         case "nombre":
-          $musculos = $this->model->ordenarEjercicios("ejercicios.nombre_ej", $orden);
+          $musculos = $this->model->ordenarMusculos("musculos.nombre_musculo", $orden);
           return $this->view->response($musculos, 200);
           break;
-        case "musculo":
-          $musculos = $this->model->ordenarEjercicios("musculos.nombre_musculo", $orden);
-          return $this->view->response($musculos, 200);
-          break;
-        case "intensidad":
-          $musculos = $this->model->ordenarEjercicios("ejercicios.intensidad_ej", $orden);
+        case "division":
+          $musculos = $this->model->ordenarMusculos("musculos.division_musculo", $orden);
           return $this->view->response($musculos, 200);
           break;
         default:
@@ -157,8 +157,7 @@ class MusculosApiController
       return $this->view->response("Bad Request", 400);
     }
   }
-
-  public function anadirEjercicio()
+   public function anadirMusculo()
   {
     if (!$this->AuthAPIhelper->isLoggedIn()) {
       $this->view->response("No estas logeado", 401);
@@ -196,7 +195,7 @@ class MusculosApiController
     }
   }
 
-  public function editarEjercicio($params = null)
+  public function editarMusculo($params = null)
   {
 
     $id = $params[':ID'];
@@ -222,5 +221,5 @@ class MusculosApiController
         }
       }
     }
-  }
+  } 
 }
